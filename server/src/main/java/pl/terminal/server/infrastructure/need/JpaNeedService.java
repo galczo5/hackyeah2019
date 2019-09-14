@@ -1,11 +1,14 @@
 package pl.terminal.server.infrastructure.need;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
+import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.airport.AirportId;
+import pl.terminal.server.domain.match.password.MatchPasswordGenerator;
+import pl.terminal.server.domain.match.password.MatchPasswordRequest;
 import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.TravelerId;
+import pl.terminal.server.infrastructure.airport.AirportsService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,12 +16,20 @@ import java.util.stream.Collectors;
 @Service
 public class JpaNeedService implements NeedService {
 
-    @Autowired
-    private JpaNeedEventRepository jpaNeedRepository;
+    private final JpaNeedEventRepository jpaNeedRepository;
 
-    @Autowired
-    private JpaAcceptNeedEventRepository jpaAcceptNeedEventRepository;
+    private final JpaAcceptNeedEventRepository jpaAcceptNeedEventRepository;
 
+    private final MatchPasswordGenerator matchPasswordGenerator;
+
+    private final AirportsService airportsService;
+
+    public JpaNeedService(JpaNeedEventRepository jpaNeedRepository, JpaAcceptNeedEventRepository jpaAcceptNeedEventRepository, MatchPasswordGenerator matchPasswordGenerator, AirportsService airportsService) {
+        this.jpaNeedRepository = jpaNeedRepository;
+        this.jpaAcceptNeedEventRepository = jpaAcceptNeedEventRepository;
+        this.matchPasswordGenerator = matchPasswordGenerator;
+        this.airportsService = airportsService;
+    }
 
     @Override
     public NeedRequestId registerNeed(RegisterNeedRequest request) {
@@ -57,19 +68,26 @@ public class JpaNeedService implements NeedService {
         JpaNeedEvent needRequest = jpaNeedRepository.findById(needRequestId.getId()).orElseThrow(IllegalAccessError::new);
         JpaNeedEvent matchNeedRequest = jpaNeedRepository.findById(matchAcceptId.getId()).orElseThrow(IllegalAccessError::new);
 
-        JpaAcceptNeedEvent acceptNeedEvent = JpaAcceptNeedEvent.builder()
+        JpaMatchNeedEvent acceptNeedEvent = JpaMatchNeedEvent.builder()
                 .needRequestId(needRequest.getId())
+                .password(matchPasswordGenerator.generatePassword(MatchPasswordRequest.empty()).getPassword())
+                .matchPassword(matchPasswordGenerator.generatePassword(MatchPasswordRequest.empty()).getPassword())
                 .matchNeedRequestId(matchNeedRequest.getId())
                 .needMatchStatus(NeedMatchStatus.ACCEPTED)
                 .build();
 
-        JpaAcceptNeedEvent persistedAcceptEvent = jpaAcceptNeedEventRepository.save(acceptNeedEvent);
+        JpaMatchNeedEvent persistedAcceptEvent = jpaAcceptNeedEventRepository.save(acceptNeedEvent);
+
+        Airport airport = airportsService.getAirportById(new AirportId(needRequest.getAirportId()));
 
         return MatchAcceptResult.builder()
                 .id(persistedAcceptEvent.getId())
+                .meetingPointName(airport.getMeetingPlace().getName())
                 .status(persistedAcceptEvent.getNeedMatchStatus())
                 .build();
     }
+
+
 
     private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
         return NeedRequest.builder()

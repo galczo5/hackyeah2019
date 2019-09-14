@@ -3,6 +3,7 @@ package pl.terminal.server.infrastructure.airport;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.airport.Airport;
+import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.coordinates.Coordinates;
 import pl.terminal.server.rest.airport.AirportSearchQuery;
 
@@ -28,6 +29,12 @@ public class AirportsService {
                 .stream()
                 .map(jpaAirportConverter::convert)
                 .collect(Collectors.toSet());
+    }
+
+    public Airport getAirportById(AirportId airportId) {
+        return airportsRepository.findById(airportId.getAirportId())
+                .map(jpaAirportConverter::convert)
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public Airport findAirportByCoordinates(Coordinates coordinates) {
