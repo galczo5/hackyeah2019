@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { RecomendationListComponent } from './recomendation-list.component';
 import { RecomendationService } from './recomendation.service';
 import { RecomendationCardComponent } from './card/recomendation-card.component';
+import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
 
 const routes = [{
   path: '',
@@ -16,6 +17,7 @@ const routes = [{
   imports: [
     CommonModule,
     MaterialModule,
+    ColoredButtonModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

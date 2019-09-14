@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.terminal.server.application.story.StoryService;
@@ -35,12 +35,12 @@ public class StoryEndpoint {
 		return stories.map(story -> new StoryDTO(story, profileService.getProfile(story.getAuthorId())));
 	}
 
-	@PutMapping(value = "/{airportId}", produces = "application/json")
-	public void addStory(@PathVariable Long airportId, AddStoryRequestDTO requestDTO) {
+	@PostMapping(value = "/{airportId}", produces = "application/json")
+	public void addStory(@PathVariable Long airportId, @RequestBody AddStoryRequestDTO requestDTO) {
 		storyService.addStory(requestDTO.toDomain(new AirportId(airportId)));
 	}
 
-	@PostMapping(value = "/{storyId}/{travelerId}", produces = "application/json")
+	@PostMapping(value = "like/{storyId}/{travelerId}", produces = "application/json")
 	public void likeStory(@PathVariable Long storyId, @PathVariable Long travelerId) {
 		storyService.likeStory(new StoryId(storyId), new TravelerId(travelerId));
 	}
