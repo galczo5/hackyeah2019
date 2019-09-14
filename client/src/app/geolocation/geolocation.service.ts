@@ -15,7 +15,7 @@ export class GeolocationService {
     const location$: Subject<Location> = new Subject<Location>();
 
     if (this.fakeLocation) {
-      return of(new Location(52.167449, 20.967898)); // Warsaw Airport
+      return of(new Location(20.967898, 52.167449)); // Warsaw Airport
     }
 
     if (navigator.geolocation) {
