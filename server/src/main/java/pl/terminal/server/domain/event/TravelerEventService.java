@@ -1,6 +1,6 @@
 package pl.terminal.server.domain.event;
 
-import pl.terminal.server.domain.TravelerId;
+import pl.terminal.server.domain.traveler.TravelerId;
 
 import java.util.Set;
 
