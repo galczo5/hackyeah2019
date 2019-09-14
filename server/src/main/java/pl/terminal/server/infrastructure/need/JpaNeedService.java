@@ -56,8 +56,8 @@ public class JpaNeedService implements NeedService {
     }
 
     @Override
-    public List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId) {
-        return jpaNeedRepository.findAllByAirportId(airportId.getAirportId())
+    public List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId, NeedRequestId needRequestId) {
+        return jpaNeedRepository.findAllByAirportIdAndIdNot(airportId.getAirportId(), needRequestId.getId())
                 .stream()
                 .map(this::toNeedRequest)
                 .collect(Collectors.toList());

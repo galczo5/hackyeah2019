@@ -40,7 +40,7 @@ class MockNeedService implements NeedService {
 	}
 
 	@Override
-	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId) {
+	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId, NeedRequestId needRequestId) {
 		return needsByAirports.get(airportId)
 	}
 

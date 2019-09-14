@@ -36,7 +36,7 @@ public class MatchingService {
 
 	public List<Match> matchNeed(NeedRequestId requestId) {
 		final NeedRequest need = needService.findNeedRequest(requestId);
-		final List<NeedRequest> requests = needService.findActiveNeedRequestsByAirport(need.getAirportId());
+		final List<NeedRequest> requests = needService.findActiveNeedRequestsByAirport(need.getAirportId(), need.getNeedRequestId());
 		final Map<NeedRequest, Integer> factors = calculateMatchFactors(need, requests);
 		return getBestMatches(factors);
 	}

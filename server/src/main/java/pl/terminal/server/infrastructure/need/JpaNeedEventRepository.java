@@ -7,5 +7,5 @@ import java.util.Set;
 
 @Repository
 public interface JpaNeedEventRepository extends CrudRepository<JpaNeedEvent, Long> {
-    Set<JpaNeedEvent> findAllByAirportId(Long airportId);
+    Set<JpaNeedEvent> findAllByAirportIdAndIdNot(Long airportId, Long needEventId);
 }

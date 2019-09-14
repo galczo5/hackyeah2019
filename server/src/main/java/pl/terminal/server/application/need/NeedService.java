@@ -14,7 +14,7 @@ public interface NeedService {
 
 	NeedRequest findNeedRequest(NeedRequestId requestId);
 
-	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId);
+	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId, NeedRequestId toExclude);
 
 	MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId);
 }
