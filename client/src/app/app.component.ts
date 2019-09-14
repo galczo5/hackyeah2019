@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import { interval } from 'rxjs'
-import {GeolocationService} from "./geolocation/geolocation.service";
-import {Location} from "./geolocation/Location";
+import { Component, OnInit } from '@angular/core';
+import { interval } from 'rxjs';
+
+import { ActiveTravelerStore } from './traveler/active.traveler.store';
+import { Traveler } from './traveler/traveler';
+import { Location } from './geolocation/Location';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +15,24 @@ export class AppComponent implements OnInit {
   location: Location;
   title = 'client';
 
-  constructor(private readonly geolocationService: GeolocationService) {}
+  constructor(private activeTravelerStore: ActiveTravelerStore) {
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
     interval(1000)
       .subscribe(() => this.setLocation());
+
+    let loggedInTraveler = new Traveler('Roman Borsuk', '', 'Poland', ['Suahili']);
+
+    this.activeTravelerStore.set(loggedInTraveler);
   }
 
   setLocation(): void {
     this.geolocationService.getLocation()
-      .subscribe((currentLocation: Location) => {
-        this.location = currentLocation;
-      });
+        .subscribe((currentLocation: Location) => {
+          this.location = currentLocation;
+        });
   }
+
 }

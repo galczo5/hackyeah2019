@@ -1,1 +1,23 @@
-<p>traveler-profile works!</p>
+<h1>Profile</h1>
+
+<div>
+  Name:
+  {{traveler.name}}
+</div>
+
+<div>
+  Avatar:
+  {{traveler.avatar}}
+</div>
+
+<div>
+  Nationality:
+  {{traveler.nationality}}
+</div>
+
+<div>
+  Languages:
+  <span *ngFor="let lang of traveler.languages">
+      {{lang}}
+  </span>
+</div>

@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FAKE_LOCATION } from './geolocation/geolocation.service';
 import { MaterialModule } from './material/material.module';
-import {FAKE_LOCATION} from "./geolocation/geolocation.service";
+import { ActiveTravelerStore } from './traveler/active.traveler.store';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,10 @@ import {FAKE_LOCATION} from "./geolocation/geolocation.service";
     MaterialModule
   ],
   providers: [
-    { provide: FAKE_LOCATION, useValue: true }
+    { provide: FAKE_LOCATION, useValue: true },
+    ActiveTravelerStore
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
