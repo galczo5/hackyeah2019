@@ -5,11 +5,13 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.terminal.server.application.match.MatchRemoveResponse;
 import pl.terminal.server.application.match.MatchingService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.match.Match;
 import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequestId;
+import pl.terminal.server.infrastructure.need.MatchId;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +45,7 @@ public class NeedsEndpoint {
 	}
 
 	@PostMapping("match")
-	public ResponseEntity<MatchAcceptResult> acceptMatch(@RequestBody AcceptMatchRequest acceptMatchRequest) {
+	public ResponseEntity<MatchAcceptResult> acceptMatch(@RequestBody MatchRequest acceptMatchRequest) {
 		try {
 			MatchAcceptResult matchAcceptResult = matchingService.acceptMatch(
 					acceptMatchRequest.getRequestId(),
@@ -55,6 +57,14 @@ public class NeedsEndpoint {
 		}
 	}
 
-//	@DeleteMapping("match")
-//	public ResponseEntity<MatchAcceptResult>
+	@DeleteMapping("match")
+	public ResponseEntity<MatchRemoveResponse> deleteMatched(@RequestBody MatchId matchId) {
+		try {
+			MatchRemoveResponse matchRemoveResult = matchingService.removeMatch(matchId);
+			return ResponseEntity.ok(matchRemoveResult);
+		} catch(IllegalArgumentException e) {
+			log.error("Exception in deleteMAtch = {}", ExceptionUtils.getStackTrace(e));
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

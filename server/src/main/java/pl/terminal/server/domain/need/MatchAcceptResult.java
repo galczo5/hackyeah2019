@@ -3,12 +3,13 @@ package pl.terminal.server.domain.need;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import pl.terminal.server.infrastructure.need.MatchId;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class MatchAcceptResult {
-    private Long id;
+    private MatchId id;
     private NeedMatchStatus status;
     private String meetingPointName;
 }

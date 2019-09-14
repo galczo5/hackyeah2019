@@ -11,7 +11,7 @@ import pl.terminal.server.domain.need.NeedRequestId;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcceptMatchRequest {
+public class MatchRequest {
     private NeedRequestId requestId;
     private NeedRequestId matchRequestId;
 }

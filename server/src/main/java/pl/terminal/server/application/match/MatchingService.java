@@ -9,6 +9,7 @@ import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.languages.Languages;
 import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
+import pl.terminal.server.infrastructure.need.MatchId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,5 +116,9 @@ public class MatchingService {
 
 	public MatchAcceptResult acceptMatch(NeedRequestId needRequestId, NeedRequestId matchAcceptId) {
 		return needService.createMatchAccept(needRequestId, matchAcceptId);
+	}
+
+	public MatchRemoveResponse removeMatch(MatchId id) {
+		return needService.removeAcceptedMatch(new MatchRemoveRequest(id) );
 	}
 }

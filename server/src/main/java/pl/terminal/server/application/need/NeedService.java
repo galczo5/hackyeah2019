@@ -1,5 +1,7 @@
 package pl.terminal.server.application.need;
 
+import pl.terminal.server.application.match.MatchRemoveRequest;
+import pl.terminal.server.application.match.MatchRemoveResponse;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequest;
@@ -17,4 +19,6 @@ public interface NeedService {
 	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId, NeedRequestId toExclude);
 
 	MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId);
+
+    MatchRemoveResponse removeAcceptedMatch(MatchRemoveRequest matchRemoveRequest);
 }
