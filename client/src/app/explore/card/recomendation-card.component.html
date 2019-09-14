@@ -1,0 +1,24 @@
+<mat-card>
+
+  <p class="top-row">
+
+    <span class="image">
+      <div class="logo"></div>
+    </span>
+
+    <span class="title">
+      {{recomendation.title}}
+    </span>
+    <span class="ranking">
+      {{recomendation.ranking}}
+    </span>
+  </p>
+
+  <p class="description"
+     matRipple
+     [ngClass]="{'full-text': opened}"
+     (click)="toggle()">
+    {{recomendation.description}}
+  </p>
+
+</mat-card>

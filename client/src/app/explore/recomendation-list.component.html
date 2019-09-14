@@ -1,0 +1,15 @@
+<h1>Explore</h1>
+
+<div class="recomendation-list">
+
+  <recomendation-card *ngFor="let reco of recos"
+                      [recomendation]="reco">
+  </recomendation-card>
+
+</div>
+
+<div class="container">
+  <button mat-raised-button>
+    Add your story
+  </button>
+</div>
