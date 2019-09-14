@@ -6,6 +6,7 @@ import { SetLocationComponent } from './set-location/set-location.component';
 import { MaterialModule } from '../material/material.module';
 import { AirportListComponent } from './airport-list/airport-list.component';
 import { ActivityComponent } from './activity/activity.component';
+import {ColoredButtonModule} from "../shared/colored-button/colored-button.module";
 import { LoginService } from '../login/login.service';
 
 const routes = [{
@@ -18,7 +19,8 @@ const routes = [{
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    ColoredButtonModule
   ]
 })
 export class LocationModule {

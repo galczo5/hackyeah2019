@@ -107,7 +107,7 @@ h3 {
 .colored-button {
   display: block;
   margin: auto;
-  width: 80%;
+  padding: 0 16px;
 
   button {
     background: linear-gradient(90deg, #2f05b0, #cd4470);
@@ -128,4 +128,16 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.page-header {
+  @supports (-webkit-appearance:none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
+}
+
+.mat-progress-bar-fill:after {
+  background: linear-gradient(90deg, #2f05b0, #cd4470) !important;
 }

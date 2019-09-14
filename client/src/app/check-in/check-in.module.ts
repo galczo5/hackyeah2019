@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CheckInComponent } from './check-in/check-in.component';
 import {RouterModule} from "@angular/router";
 import {MaterialModule} from "../material/material.module";
+import {ColoredButtonModule} from "../shared/colored-button/colored-button.module";
 
 const routes = [{
   path: '',
@@ -14,7 +15,8 @@ const routes = [{
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule
+    MaterialModule,
+    ColoredButtonModule
   ]
 })
 export class CheckInModule { }

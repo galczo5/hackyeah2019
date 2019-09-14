@@ -13,11 +13,14 @@
     <app-activity *ngFor="let activity of activities"
                   [name]="activity.name"
                   [active]="activityActive(activity)"
+                  [imageUrl]="activity.imageUrl"
                   (click)="toggleActivity(activity)"></app-activity>
   </div>
   <div class="next-button-wrapper">
-    <button mat-flat-button color="primary" (click)="next()">
-      NEXT
-    </button>
+    <colored-button>
+      <button mat-flat-button color="primary" (click)="next()">
+        NEXT
+      </button>
+    </colored-button>
   </div>
 </div>

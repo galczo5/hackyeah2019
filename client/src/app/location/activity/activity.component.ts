@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-activity',
@@ -13,9 +14,16 @@ export class ActivityComponent implements OnInit {
   @Input()
   active: boolean = false;
 
-  constructor() { }
+  @Input()
+  imageUrl: string;
+
+  constructor(private readonly domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
+  }
+
+  sanitizedUrl(): SafeUrl {
+    return this.domSanitizer.bypassSecurityTrustUrl(this.imageUrl);
   }
 
 }

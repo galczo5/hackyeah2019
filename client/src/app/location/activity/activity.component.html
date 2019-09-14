@@ -1,6 +1,8 @@
 <div class="activity-wrapper"
      [class.active]="active">
   <div class="activity-img"
-       [class.active]="active"></div>
+       [class.active]="active">
+    <img [src]="sanitizedUrl()" alt="">
+  </div>
   <h3>{{name}}</h3>
 </div>

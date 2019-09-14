@@ -1,14 +1,25 @@
 .activity-wrapper {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .activity-img {
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  background: #C4C4C4;
+  background: #E2E3F9;
+  padding: 10px;
+
+  img {
+    width: 70%;
+  }
 
   &.active {
     border: 3px solid red;
