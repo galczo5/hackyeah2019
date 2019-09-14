@@ -206,27 +206,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/pwa@^0.803.4":
-  version "0.803.4"
-  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-0.803.4.tgz#07ddba5ec0d776718f92766bb9b41c196dc5b638"
-  integrity sha512-2Owkt7+MjVbu9mtt3zoo5eKB4ZUF84Ns6QeOukc/141uXpKzyI70Ur0EfNV/fvHYBr433ndXDYK26iDHxL0Rag==
-  dependencies:
-    "@angular-devkit/core" "8.3.4"
-    "@angular-devkit/schematics" "8.3.4"
-    "@schematics/angular" "8.3.4"
-    parse5-html-rewriting-stream "5.1.0"
-
 "@angular/router@~8.2.4":
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-8.2.6.tgz#b08883950ab580d02fd491729d60e091f8363529"
   integrity sha512-XAqhrPbU+z/ztf2b0VxFytHPJRpWfhnhCJ2qf9Tie1Cov6zOlgIKInOSF+WtsFEUZAnwSbAfGk4KSXrwBWw8zA==
-  dependencies:
-    tslib "^1.9.0"
-
-"@angular/service-worker@~8.2.4":
-  version "8.2.6"
-  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-8.2.6.tgz#2c59ebc9865a7f1adcae5e4a8c8820ebf1d3b117"
-  integrity sha512-lGxlR+XDFpxCF6cI5plbRBXsxDcP3aFY6NTEIWpUjRHP4mFj7t9XuHzma4/lzkirXXBq/TZ3bRvby9tGYqf1EQ==
   dependencies:
     tslib "^1.9.0"
 
@@ -5535,30 +5518,10 @@ parse-json@^4.0.0:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
 
-parse5-html-rewriting-stream@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/parse5-html-rewriting-stream/-/parse5-html-rewriting-stream-5.1.0.tgz#63f92c958764aea8cbe3aa68f2e5895c32068ab8"
-  integrity sha512-hZlaOTHJs4dpC5yFHnOSEMh26ErsqTsLzxKqkuRcUqtiu0kMsBQ9pkgANkECDyoBUhJ3+hvb2DPLsyqbtcS61Q==
-  dependencies:
-    parse5 "^5.1.0"
-    parse5-sax-parser "^5.1.0"
-
-parse5-sax-parser@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/parse5-sax-parser/-/parse5-sax-parser-5.1.0.tgz#ec234d23223a8054a74ff173aa3dc2da74c5bbd9"
-  integrity sha512-VEhdEDhBkoSILPmsZ96SoIIUow3hZbtgQsqXw7r8DxxnqsCIO0fwkT9mWgBcf9SPjVUh92liuEprHrrYzXBPWQ==
-  dependencies:
-    parse5 "^5.1.0"
-
 parse5@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
-
-parse5@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
-  integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
 
 parseqs@0.0.5:
   version "0.0.5"
