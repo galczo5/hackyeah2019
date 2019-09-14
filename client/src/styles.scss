@@ -7,7 +7,11 @@ html, body {
   height: 100%;
   background: $background-color;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 $primary: #3f51b5;
 
@@ -110,4 +114,18 @@ h3 {
   height: 125px;
   margin-top: 48px;
   text-align: center;
+}
+
+.colored-button {
+  display: block;
+  margin: auto;
+  width: 80%;
+
+  button {
+    background: linear-gradient(90deg, #2f05b0, #cd4470);
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 20px;
+  }
 }
