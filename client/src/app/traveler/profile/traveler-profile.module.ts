@@ -8,6 +8,7 @@ import { AirportAchievementService } from '../achivement/airports/airport-achiev
 import { TravelerAirportsComponent } from '../achivement/airports/traveler-airports.component';
 import { TravelerForeignersComponent } from '../achivement/foreigners/traveler-foreigners.component';
 import { ForeignersAchievementService } from '../achivement/foreigners/foreigners-achievement.service';
+import { ProfileModule } from '../../shared/profile/profile.module';
 
 const routes = [{
   path: '',
@@ -18,6 +19,7 @@ const routes = [{
   imports: [
     CommonModule,
     MaterialModule,
+    ProfileModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Traveler } from '../traveler/traveler';
+import { UserInfo } from '../shared/profile/user-info';
 
 
 @Component({
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MatchedComponent implements OnInit {
 
+  matched: UserInfo;
+
   constructor() {
   }
 
   ngOnInit() {
+    this.matched = new Traveler('Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
   }
 
 }

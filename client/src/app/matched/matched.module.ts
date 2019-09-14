@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../material/material.module';
 import { MatchedComponent } from './matched.component';
+import { ProfileModule } from '../shared/profile/profile.module';
 
 
 const routes = [{
@@ -15,6 +16,7 @@ const routes = [{
   imports: [
     CommonModule,
     MaterialModule,
+    ProfileModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
