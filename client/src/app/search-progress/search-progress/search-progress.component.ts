@@ -1,18 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatchedService } from '../matched.service';
-import { interval } from 'rxjs';
-import { map, switchMap, takeWhile, tap } from 'rxjs/operators';
+import { interval, Subject } from 'rxjs';
+import { map, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { MatchedStore } from '../../matched/matched.store';
+import { Traveler } from '../../traveler/traveler';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-progress',
   templateUrl: './search-progress.component.html',
   styleUrls: ['./search-progress.component.scss']
 })
-export class SearchProgressComponent implements OnInit {
+export class SearchProgressComponent implements OnInit, OnDestroy {
 
   gotMatched = false;
 
-  constructor(private matchedService: MatchedService) {
+  private readonly destroy$ = new Subject();
+
+  constructor(private matchedService: MatchedService,
+              private router: Router,
+              private matchedStore: MatchedStore) {
   }
 
   ngOnInit() {
@@ -29,11 +36,19 @@ export class SearchProgressComponent implements OnInit {
             this.gotMatched = true;
           }
 
-        })
+        }),
+        takeUntil(this.destroy$)
       )
-      .subscribe((matchedPpl) => {
-        console.log(matchedPpl);
+      .subscribe((travelers: Array<Traveler>) => {
+
+        this.matchedStore.set(travelers[0]);
+        this.router.navigate(['/matched']);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

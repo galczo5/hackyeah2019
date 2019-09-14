@@ -6,8 +6,9 @@ import { ActiveTravelerStore } from '../traveler/active.traveler.store';
 import { SelectedAirportStore } from '../location/selected-airport.store';
 import { NeedRequestIdStore } from '../check-in/need-request-id.store';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { NeedRequestId } from '../check-in/need-request-id';
+import { Traveler } from '../traveler/traveler';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class MatchedService {
               private needRequestIdStore: NeedRequestIdStore) {
   }
 
-  findMatched(): any { // Observable<Array<any>> {
+  findMatched(): Observable<Array<Traveler>> {
 
     return this.needRequestIdStore
                .select()
@@ -29,6 +30,19 @@ export class MatchedService {
 
                    return this.httpClient
                               .get(this.url + '/' + requestId.id);
+                 }),
+                 map((rawMatched: Array<any>) => {
+
+                   return rawMatched.map((rawTraveler) => {
+
+                     return new Traveler(
+                       rawTraveler.profile.travelerId,
+                       rawTraveler.profile.nickname,
+                       '',
+                       rawTraveler.profile.nationality,
+                       rawTraveler.profile.languages
+                     );
+                   });
                  })
                );
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Traveler } from '../traveler/traveler';
 import { UserInfo } from '../shared/profile/user-info';
+import { MatchedStore } from './matched.store';
 
 
 @Component({
@@ -11,11 +12,16 @@ export class MatchedComponent implements OnInit {
 
   matched: UserInfo;
 
-  constructor() {
+  constructor(private matchedStore: MatchedStore) {
   }
 
   ngOnInit() {
-    this.matched = new Traveler(1, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
+
+    this.matchedStore
+        .select()
+        .subscribe((traveler: Traveler) => {
+          this.matched = traveler;
+        });
   }
 
 }
