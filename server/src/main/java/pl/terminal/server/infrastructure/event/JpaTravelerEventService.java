@@ -1,14 +1,13 @@
 package pl.terminal.server.infrastructure.event;
 
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.event.EventId;
 import pl.terminal.server.domain.event.EventType;
-import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.domain.event.TravelerEvent;
 import pl.terminal.server.domain.event.TravelerEventService;
-
-import java.util.Set;
-import java.util.stream.Collectors;
+import pl.terminal.server.domain.traveler.TravelerId;
 
 @Service
 public class JpaTravelerEventService implements TravelerEventService {
@@ -42,7 +41,7 @@ public class JpaTravelerEventService implements TravelerEventService {
                         .eventData(jpaEvent.getData())
                         .build()
                 )
-                .orElseThrow();
+				.orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
