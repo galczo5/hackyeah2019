@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {WaitingTimeStore} from "../waiting-time-store.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-check-in',
@@ -7,13 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly waitingTimeStore: WaitingTimeStore,
+              private readonly router: Router) {
+
+  }
 
   ngOnInit() {
   }
 
   next(hours: HTMLInputElement, minutes: HTMLInputElement): void {
-    console.log(hours.value, minutes.value);
+    this.waitingTimeStore.set({
+      hours: parseInt(hours.value),
+      minutes: parseInt(minutes.value)
+    });
+
+    this.router.navigate(['search'])
   }
 
 }

@@ -2,17 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription, timer} from 'rxjs'
 import {AirportsService} from "../airports.service";
 import {Airport} from "../airport";
-import {filter} from "rxjs/operators";
+import {SelectedActivitiesStore} from "../selected-activities-store.service";
+import {Router} from "@angular/router";
+import {Activity} from "./Activity";
 
 export enum LocationFetchStatus {
   SUCCESS,
   IN_PROGRES,
   FAIL
-}
-
-export interface Activity {
-  name: string;
-  imageUrl: string;
 }
 
 @Component({
@@ -35,7 +32,9 @@ export class SetLocationComponent implements OnInit {
 
   selectedActivities: Array<Activity> = [];
 
-  constructor(private readonly airportsService: AirportsService) {
+  constructor(private readonly airportsService: AirportsService,
+              private readonly activitiesStore: SelectedActivitiesStore,
+              private readonly router: Router) {
 
   }
 
@@ -69,6 +68,11 @@ export class SetLocationComponent implements OnInit {
 
   showProgress(): boolean {
     return this.fetchStatus === LocationFetchStatus.IN_PROGRES;
+  }
+
+  next(): void {
+    this.activitiesStore.set(this.selectedActivities);
+    this.router.navigate(['check-in']);
   }
 
 }
