@@ -12,6 +12,7 @@ import pl.terminal.server.domain.language.Language;
 public class TravelerLanguageJpa {
 
 	@Id
+	@GeneratedValue
 	private Long id;
 
 	@NotNull

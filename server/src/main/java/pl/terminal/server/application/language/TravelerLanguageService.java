@@ -23,4 +23,8 @@ public class TravelerLanguageService {
 				.addLanguage(language);
 		travelerLanguageRepository.updateLanguages(languageSet);
 	}
+
+	public TravelerLanguageSet getLanguages(TravelerId travelerId) {
+		return travelerLanguageRepository.getLanguagesFor(travelerId);
+	}
 }
