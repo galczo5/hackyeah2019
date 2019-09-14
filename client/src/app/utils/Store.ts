@@ -1,4 +1,4 @@
-import { ReplaySubject, Observable } from "rxjs";
+import { ReplaySubject, Observable } from 'rxjs';
 
 export abstract class Store<T> {
 

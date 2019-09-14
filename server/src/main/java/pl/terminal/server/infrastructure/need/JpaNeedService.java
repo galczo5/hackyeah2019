@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.domain.airport.AirportId;
-import pl.terminal.server.domain.need.NeedRequest;
-import pl.terminal.server.domain.need.NeedRequestId;
-import pl.terminal.server.domain.need.RegisterNeedRequest;
-import pl.terminal.server.domain.need.TimeAvailability;
+import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.TravelerId;
 
 import java.util.List;
@@ -18,6 +15,9 @@ public class JpaNeedService implements NeedService {
 
     @Autowired
     private JpaNeedEventRepository jpaNeedRepository;
+
+    @Autowired
+    private JpaAcceptNeedEventRepository jpaAcceptNeedEventRepository;
 
 
     @Override
@@ -52,8 +52,28 @@ public class JpaNeedService implements NeedService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId) {
+        JpaNeedEvent needRequest = jpaNeedRepository.findById(needRequestId.getId()).orElseThrow(IllegalAccessError::new);
+        JpaNeedEvent matchNeedRequest = jpaNeedRepository.findById(matchAcceptId.getId()).orElseThrow(IllegalAccessError::new);
+
+        JpaAcceptNeedEvent acceptNeedEvent = JpaAcceptNeedEvent.builder()
+                .needRequestId(needRequest.getId())
+                .matchNeedRequestId(matchNeedRequest.getId())
+                .needMatchStatus(NeedMatchStatus.ACCEPTED)
+                .build();
+
+        JpaAcceptNeedEvent persistedAcceptEvent = jpaAcceptNeedEventRepository.save(acceptNeedEvent);
+
+        return MatchAcceptResult.builder()
+                .id(persistedAcceptEvent.getId())
+                .status(persistedAcceptEvent.getNeedMatchStatus())
+                .build();
+    }
+
     private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
         return NeedRequest.builder()
+                .needRequestId(new NeedRequestId(jpaNeedEvent.getId()))
                 .airportId(new AirportId(jpaNeedEvent.getAirportId()))
                 .needs(jpaNeedEvent.getNeeds())
                 .timeAvailability(new TimeAvailability(jpaNeedEvent.getAvailableFrom(), jpaNeedEvent.getAvailableTo()))
