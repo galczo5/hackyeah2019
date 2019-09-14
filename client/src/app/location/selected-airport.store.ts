@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { Store } from '../utils/Store';
-import { Activity } from './set-location/Activity';
+import { Airport } from './airport';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SelectedActivitiesStore extends Store<Array<Activity>> {
+export class SelectedAirportStore extends Store<Airport> {
 
   constructor() {
     super();

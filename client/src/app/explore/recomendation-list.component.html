@@ -1,15 +1,16 @@
-<h1>Explore</h1>
-
-<div class="recomendation-list">
-
-  <recomendation-card *ngFor="let reco of recos"
-                      [recomendation]="reco">
-  </recomendation-card>
-
+<div class="recomendation-list-grid">
+  <h1 class="align-center header-shadow">Explore</h1>
+  <div class="recomendation-list">
+    <recomendation-card *ngFor="let reco of recos"
+                        [recomendation]="reco">
+    </recomendation-card>
+  </div>
+  <div class="align-center button-container-shadow">
+    <colored-button>
+      + Add your story
+    </colored-button>
+  </div>
 </div>
 
-<div class="container">
-  <colored-button>
-    + Add your story
-  </colored-button>
-</div>
+
+

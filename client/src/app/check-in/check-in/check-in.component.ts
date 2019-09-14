@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {WaitingTimeStore} from "../waiting-time-store.service";
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
+
+import { WaitingTimeStore } from '../waiting-time-store.service';
+import { RegisterService } from '../register.service';
 
 @Component({
   selector: 'app-check-in',
@@ -10,8 +12,8 @@ import {Router} from "@angular/router";
 export class CheckInComponent implements OnInit {
 
   constructor(private readonly waitingTimeStore: WaitingTimeStore,
+              private readonly registerService: RegisterService,
               private readonly router: Router) {
-
   }
 
   ngOnInit() {
@@ -23,7 +25,9 @@ export class CheckInComponent implements OnInit {
       minutes: parseInt(minutes.value)
     });
 
-    this.router.navigate(['search'])
+    this.registerService.register();
+
+    this.router.navigate(['search']);
   }
 
 }

@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Airport} from "../airport";
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Airport } from '../airport';
+import { SelectedAirportStore } from '../selected-airport.store';
 
 @Component({
   selector: 'app-airport-list',
@@ -11,9 +13,17 @@ export class AirportListComponent implements OnInit {
   @Input()
   airports: Array<Airport> = [];
 
-  constructor() { }
+  selectedAirport: Airport;
+
+  constructor(private selectedAirportStore: SelectedAirportStore) {
+  }
 
   ngOnInit() {
+  }
+
+  selectAirport(airport: Airport): void {
+    this.selectedAirport = airport;
+    this.selectedAirportStore.set(airport);
   }
 
 }

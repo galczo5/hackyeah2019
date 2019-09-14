@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription, timer} from 'rxjs'
-import {AirportsService} from "../airports.service";
-import {Airport} from "../airport";
-import {SelectedActivitiesStore} from "../selected-activities-store.service";
-import {Router} from "@angular/router";
-import {Activity} from "./Activity";
+import { Router } from '@angular/router';
+import { Subscription, timer } from 'rxjs';
+
+import { AirportsService } from '../airports.service';
+import { Airport } from '../airport';
+import { SelectedActivitiesStore } from '../selected-activities-store.service';
+import { Activity } from './Activity';
 
 export enum LocationFetchStatus {
   SUCCESS,
@@ -40,10 +41,10 @@ export class SetLocationComponent implements OnInit {
 
   ngOnInit() {
     let subscription: Subscription = this.airportsService.getAirports()
-      .subscribe(airports => {
-        this.locations = airports;
-        this.fetchStatus = LocationFetchStatus.SUCCESS;
-      });
+                                         .subscribe(airports => {
+                                           this.locations = airports;
+                                           this.fetchStatus = LocationFetchStatus.SUCCESS;
+                                         });
 
     timer(5000)
       .subscribe(() => {
@@ -57,7 +58,7 @@ export class SetLocationComponent implements OnInit {
   toggleActivity(activity: Activity): void {
     if (this.activityActive(activity)) {
       this.selectedActivities = this.selectedActivities.filter(a => a.name !== activity.name);
-    }  else {
+    } else {
       this.selectedActivities.push(activity);
     }
   }
