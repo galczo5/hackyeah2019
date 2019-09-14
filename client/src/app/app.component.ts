@@ -16,25 +16,11 @@ export class AppComponent implements OnInit {
   location: Location;
   title = 'client';
 
-  constructor(private activeTravelerStore: ActiveTravelerStore,
-              private geolocationService: GeolocationService) {
+  constructor(private activeTravelerStore: ActiveTravelerStore) {
   }
 
   ngOnInit() {
-
-    interval(1000)
-      .subscribe(() => this.setLocation());
-
     const loggedInTraveler = new Traveler('Roman Borsuk', '', 'Poland', ['Suahili']);
-
     this.activeTravelerStore.set(loggedInTraveler);
   }
-
-  setLocation(): void {
-    this.geolocationService.getLocation()
-        .subscribe((currentLocation: Location) => {
-          this.location = currentLocation;
-        });
-  }
-
 }
