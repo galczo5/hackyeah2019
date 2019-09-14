@@ -7,6 +7,7 @@ import pl.terminal.server.domain.traveler.TravelerId;
 @Data
 @Builder
 public class TravelerEvent {
+    private EventId event;
     private TravelerId travelerId;
     private EventType eventType;
     private String eventData;

@@ -24,4 +24,11 @@ public class JpaAirport {
     private String code;
 
     private String name;
+
+    private double longitude;
+
+    private double latitude;
+
+
+
 }

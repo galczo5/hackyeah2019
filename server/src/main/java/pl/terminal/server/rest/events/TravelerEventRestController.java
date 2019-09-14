@@ -18,15 +18,4 @@ public class TravelerEventRestController {
     private TravelerEventService travelerEventService;
 
 
-    @PostMapping
-    public ResponseEntity<RegisterEventResponse> registerEvent(@RequestBody RegisterEventRequest registerEventRequest) {
-        travelerEventService.addTravelerEvent(new TravelerId(registerEventRequest.getUser()), null);
-        return ResponseEntity.ok(null);
-    }
-
-//    @GetMapping
-//    public ResponseEntity<RegisterEventResponse> getUserEvents() {
-//
-//    }
-
 }

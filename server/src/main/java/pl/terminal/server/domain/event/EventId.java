@@ -1,4 +1,4 @@
-package pl.terminal.server.domain.airport;
+package pl.terminal.server.domain.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AirportId {
-    private Long airportId;
+public class EventId {
+    private Long id;
 }

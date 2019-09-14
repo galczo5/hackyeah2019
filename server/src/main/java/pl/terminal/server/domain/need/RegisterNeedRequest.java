@@ -1,8 +1,10 @@
 package pl.terminal.server.domain.need;
 
+import lombok.Getter;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.traveler.TravelerId;
 
+@Getter
 public class RegisterNeedRequest {
 
 	private final TravelerId travelerId;

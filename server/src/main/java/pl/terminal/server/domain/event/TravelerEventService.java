@@ -5,6 +5,7 @@ import pl.terminal.server.domain.traveler.TravelerId;
 import java.util.Set;
 
 public interface TravelerEventService {
-    void addTravelerEvent(TravelerId travelerId, TravelerEvent event);
+    TravelerEvent findEventById(EventId eventId);
+    TravelerEvent addTravelerEvent(TravelerId travelerId, TravelerEvent event);
     Set<TravelerEvent> getTravelerEvents(TravelerId travelerId);
 }
