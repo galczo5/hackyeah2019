@@ -23,7 +23,7 @@ public class NeedsEndpoint {
 	}
 
 	@GetMapping(value = "/match", produces = "application/json")
-	public List<MatchDTO> getMatches(@PathVariable String requestId) {
+	public List<MatchDTO> getMatches(@PathVariable Long requestId) {
 		final List<Match> matches = matchingService.matchNeed(new NeedRequestId(requestId));
 		return matches.stream()
 				.map(MatchDTO::new)

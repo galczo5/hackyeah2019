@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
-import pl.terminal.server.domain.traveler.profile.languages.Language;
 
 @RestController
 @RequestMapping("profiles")

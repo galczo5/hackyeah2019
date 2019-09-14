@@ -2,8 +2,6 @@ package pl.terminal.server.domain.need;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.temporal.TemporalUnit;
 
 public class TimeAvailability {
 
