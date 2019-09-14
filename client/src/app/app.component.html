@@ -1,5 +1,4 @@
-<main [@routeAnimations]="prepareRoute(outlet)" >
-  <router-outlet #outlet="outlet"></router-outlet>
-</main>
-
+<div class="content" [@routerAnimation]="getRouteAnimation(router)">
+  <router-outlet #router="outlet"></router-outlet>
+</div>
 <navigation></navigation>
