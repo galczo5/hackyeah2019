@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class JpaAcceptNeedEvent {
+public class JpaMatchNeedEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +22,10 @@ public class JpaAcceptNeedEvent {
     private Long needRequestId;
 
     private Long matchNeedRequestId;
+
+    private String password;
+
+    private String matchPassword;
 
     private NeedMatchStatus needMatchStatus;
 }

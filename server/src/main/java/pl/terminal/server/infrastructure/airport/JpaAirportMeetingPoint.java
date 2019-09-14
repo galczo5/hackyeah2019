@@ -5,30 +5,23 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Table(name = "AIRPORTS")
+@Table(name = "AIRPORT_MEETING_POINT")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class JpaAirport {
+public class JpaAirportMeetingPoint {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String code;
-
     private String name;
 
-    @OneToOne
-    private JpaAirportMeetingPoint meetingPoint;
-
-    private double longitude;
-
-    private double latitude;
-
-
-
+    private String description;
 }

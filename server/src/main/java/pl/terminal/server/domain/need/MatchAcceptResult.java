@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class MatchAcceptResult {
     private Long id;
     private NeedMatchStatus status;
+    private String meetingPointName;
 }
