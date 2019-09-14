@@ -1,18 +1,20 @@
 <main class="justified-center">
-  <div class="welcome-header">
-    <h2>
-      Welcome to
-    </h2>
-    <app-airport-list [airports]="locations"></app-airport-list>
-  </div>
-  <h3 class="question-header">
-    What do you want to do?
-  </h3>
-  <div class="grid two-cols" style="margin: 0 50px;">
-    <app-activity name="Eat"></app-activity>
-    <app-activity name="Drink"></app-activity>
-    <app-activity name="Chat"></app-activity>
-    <app-activity name="Explore"></app-activity>
+  <div class="above-buttons-area">
+    <div class="welcome-header">
+      <h2>
+        Welcome to
+      </h2>
+      <app-airport-list [airports]="locations"></app-airport-list>
+    </div>
+    <h3 class="question-header">
+      What do you want to do?
+    </h3>
+    <div class="grid two-cols" style="margin: 0 50px;">
+      <app-activity *ngFor="let activity of activities"
+                    [name]="activity.name"
+                    [active]="activityActive(activity)"
+                    (click)="toggleActivity(activity)"></app-activity>
+    </div>
   </div>
   <div class="next-button-wrapper">
     <button mat-flat-button color="primary">NEXT</button>

@@ -40,8 +40,7 @@ public class JpaTravelerEventService implements TravelerEventService {
                         .eventType(jpaEvent.getEventType())
                         .eventData(jpaEvent.getData())
                         .build()
-                )
-				.orElseThrow(IllegalArgumentException::new);
+                ).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

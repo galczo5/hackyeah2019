@@ -15,7 +15,7 @@
 }
 
 .welcome-header {
-
+  margin-top: 48px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -41,9 +41,4 @@
 
 .loader {
   margin: 50px 0;
-}
-
-.next-button-wrapper {
-  margin-top: 48px;
-  text-align: center;
 }

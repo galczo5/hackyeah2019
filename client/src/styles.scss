@@ -11,9 +11,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 $primary: #3f51b5;
 
+
+$size-0: 0px;
 $size-1: 10px;
 $size-2: 20px;
 $size-3: 25px;
+
+$size-map: (
+  '0': $size-0,
+  '1': $size-1,
+  '2': $size-2,
+  '3': $size-3
+);
+
+$direction-map: (
+  't': 'top',
+  'r': 'right',
+  'b': 'bottom',
+  'l': 'left'
+);
 
 .app-wrapper {
   padding: $size-2;
@@ -65,22 +81,33 @@ h3 {
   font-weight: bold;
 }
 
-.p-0 {
-  padding: 0;
+@each $no, $size in $size-map {
+  .m-#{$no} {
+    margin: $size;
+  }
+
+  .p-#{$no} {
+    padding: $size;
+  }
+
+  @each $key, $name in $direction-map {
+    .m#{$key}-#{$no} {
+      margin-#{$name}: $size;
+    }
+
+    .p#{$key}-#{$no} {
+      padding-#{$name}: $size;
+    }
+  }
 }
 
-.m-0 {
-  margin: 0;
+.above-buttons-area {
+  height: calc(100vh - 125px);
+  overflow-y: scroll;
 }
 
-.m-1 {
-  margin: $size-1;
-}
-
-.m-2 {
-  margin: $size-2;
-}
-
-.m-3 {
-  margin: $size-3;
+.next-button-wrapper {
+  height: 125px;
+  margin-top: 48px;
+  text-align: center;
 }

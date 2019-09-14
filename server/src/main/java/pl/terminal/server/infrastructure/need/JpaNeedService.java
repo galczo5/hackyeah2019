@@ -23,13 +23,14 @@ public class JpaNeedService implements NeedService {
         JpaNeedEvent jpaNeedEvent = JpaNeedEvent
                 .builder()
                 .airportId(request.getAirportId().getAirportId())
-                .needs(Collections.singleton(request.getNeed()))
+                .needs(request.getNeeds())
                 .travelerId(request.getTravelerId().getId())
                 .build();
 
         JpaNeedEvent event = jpaNeedRepository.save(jpaNeedEvent);
 
-        return NeedRequestId.builder()
+        return NeedRequestId
+                .builder()
                 .id(event.getId())
                 .build();
     }
@@ -40,7 +41,7 @@ public class JpaNeedService implements NeedService {
                 .map(jpaNeedEvent -> NeedRequest.builder()
                         .airportId(new AirportId(jpaNeedEvent.getAirportId()))
                         .needs(jpaNeedEvent.getNeeds())
-						.timeAvailability(new TimeAvailability(null, null))
+						.timeAvailability(new TimeAvailability(jpaNeedEvent.getAvailableFrom(), jpaNeedEvent.getAvailableTo()))
                         .travelerId(new TravelerId(jpaNeedEvent.getTravelerId()))
                         .build())
                 .orElseThrow(IllegalArgumentException::new);
