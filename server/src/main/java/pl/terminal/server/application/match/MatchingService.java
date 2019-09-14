@@ -47,7 +47,7 @@ public class MatchingService {
 	private Map<NeedRequest, Integer> calculateMatchFactors(NeedRequest need, List<NeedRequest> requests) {
 		final TravelerProfile profile = profileService.getProfile(need.getTravelerId());
 		return requests.stream()
-				.filter(request -> request.getTravelerId().equals(profile.getTravelerId()))
+				.filter(request -> !request.getTravelerId().equals(profile.getTravelerId()))
 				.collect(Collectors.toMap(
 						Function.identity(),
 						request -> calculateMatchFactor(need, profile, request)
@@ -55,9 +55,10 @@ public class MatchingService {
 	}
 
 	private Integer calculateMatchFactor(NeedRequest needToMatch, TravelerProfile profileToMatch, NeedRequest candidate) {
-		return calculateTimeAvailabilityFactor(needToMatch.getTimeAvailability(), candidate.getTimeAvailability()) *
-				calculateNeedsFactor(needToMatch.getNeeds(), candidate.getNeeds()) *
-				calculateProfileFactor(profileToMatch, profileService.getProfile(candidate.getTravelerId()));
+		final Integer timeAvailabilityFactor = calculateTimeAvailabilityFactor(needToMatch.getTimeAvailability(), candidate.getTimeAvailability());
+		final Integer needsFactor = calculateNeedsFactor(needToMatch.getNeeds(), candidate.getNeeds());
+		final Integer profileFactor = calculateProfileFactor(profileToMatch, profileService.getProfile(candidate.getTravelerId()));
+		return timeAvailabilityFactor * needsFactor * profileFactor;
 
 	}
 
@@ -99,12 +100,15 @@ public class MatchingService {
 		factors.entrySet().stream()
 				.filter(e -> e.getValue() > 0)
 				.sorted(Map.Entry.comparingByValue())
-				.forEachOrdered(e -> toMatch(e.getKey()));
+				.forEachOrdered(e -> {
+					final Match match = toMatch(e.getKey());
+					matches.add(match);
+				});
 		return matches;
 	}
 
-	private void toMatch(NeedRequest request) {
-		new Match(
+	private Match toMatch(NeedRequest request) {
+		return new Match(
 				request.getTravelerId(),
 				request.getNeeds(),
 				request.getTimeAvailability()

@@ -45,4 +45,9 @@ public class StoryEndpoint {
 		storyService.likeStory(new StoryId(storyId), new TravelerId(travelerId));
 	}
 
+	@PostMapping(value = "unlike/{storyId}/{travelerId}", produces = "application/json")
+	public void unlikeStory(@PathVariable Long storyId, @PathVariable Long travelerId) {
+		storyService.unlikeStory(new StoryId(storyId), new TravelerId(travelerId));
+	}
+
 }

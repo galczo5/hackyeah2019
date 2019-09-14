@@ -30,4 +30,8 @@ public class Story {
 		return likers.size();
 
 	}
+
+	public void unlike(TravelerId liker) {
+		likers.remove(liker);
+	}
 }

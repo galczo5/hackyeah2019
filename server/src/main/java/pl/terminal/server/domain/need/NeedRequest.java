@@ -2,7 +2,6 @@ package pl.terminal.server.domain.need;
 
 import java.util.Objects;
 import java.util.Set;
-
 import lombok.Builder;
 import lombok.Getter;
 import pl.terminal.server.domain.airport.AirportId;
@@ -12,6 +11,8 @@ import pl.terminal.server.domain.traveler.TravelerId;
 @Builder
 public class NeedRequest {
 
+	private final NeedRequestId id;
+
 	private final TravelerId travelerId;
 
 	private final Set<Need> needs;
@@ -20,7 +21,8 @@ public class NeedRequest {
 
 	private final TimeAvailability timeAvailability;
 
-	public NeedRequest(TravelerId travelerId, Set<Need> needs, AirportId airportId, TimeAvailability timeAvailability) {
+	public NeedRequest(NeedRequestId id, TravelerId travelerId, Set<Need> needs, AirportId airportId, TimeAvailability timeAvailability) {
+		this.id = id;
 		this.travelerId = travelerId;
 		this.needs = needs;
 		this.airportId = airportId;

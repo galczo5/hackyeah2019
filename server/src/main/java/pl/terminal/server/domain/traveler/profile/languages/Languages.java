@@ -1,5 +1,6 @@
 package pl.terminal.server.domain.traveler.profile.languages;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,10 @@ public class Languages {
 
 	public static Languages empty(TravelerId travelerId) {
 		return new Languages(Collections.emptySet());
+	}
+
+	public static Languages of(Language... languages) {
+		return new Languages(new HashSet<>(Arrays.asList(languages)));
 	}
 
 	public Languages addLanguage(Language language) {

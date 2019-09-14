@@ -1,5 +1,6 @@
 package pl.terminal.server.domain.match;
 
+import java.util.Objects;
 import java.util.Set;
 import pl.terminal.server.domain.need.Need;
 import pl.terminal.server.domain.need.TimeAvailability;
@@ -19,7 +20,7 @@ public class Match {
 		this.timeAvailability = timeAvailability;
 	}
 
-	public TravelerId getTravalerId() {
+	public TravelerId getTravelerId() {
 		return travelerId;
 	}
 
@@ -29,5 +30,24 @@ public class Match {
 
 	public TimeAvailability getTimeAvailability() {
 		return timeAvailability;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Match match = (Match) o;
+		return Objects.equals(travelerId, match.travelerId) &&
+				Objects.equals(needs, match.needs) &&
+				Objects.equals(timeAvailability, match.timeAvailability);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(travelerId, needs, timeAvailability);
 	}
 }
