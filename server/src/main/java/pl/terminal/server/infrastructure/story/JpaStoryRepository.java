@@ -1,6 +1,8 @@
 package pl.terminal.server.infrastructure.story;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.story.AddStoryRequest;
@@ -20,7 +22,8 @@ public class JpaStoryRepository implements StoryRepository {
 
 	@Override
 	public Stories findByAirportId(AirportId airportId) {
-		return null;
+		List<Story> stories = jpaRepository.findByAirportId(airportId.getAirportId()).stream().map(JpaStory::toDomain).collect(Collectors.toList());
+		return new Stories(stories);
 	}
 
 	@Override
