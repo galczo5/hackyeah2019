@@ -1,17 +1,21 @@
 package pl.terminal.server.infrastructure.need;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.match.password.MatchPasswordGenerator;
 import pl.terminal.server.domain.match.password.MatchPasswordRequest;
-import pl.terminal.server.domain.need.*;
+import pl.terminal.server.domain.need.MatchAcceptResult;
+import pl.terminal.server.domain.need.NeedMatchStatus;
+import pl.terminal.server.domain.need.NeedRequest;
+import pl.terminal.server.domain.need.NeedRequestId;
+import pl.terminal.server.domain.need.RegisterNeedRequest;
+import pl.terminal.server.domain.need.TimeAvailability;
 import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.infrastructure.airport.AirportsService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class JpaNeedService implements NeedService {
@@ -38,6 +42,8 @@ public class JpaNeedService implements NeedService {
                 .airportId(request.getAirportId().getAirportId())
                 .needs(request.getNeeds())
                 .travelerId(request.getTravelerId().getId())
+				.availableFrom(request.getTimeAvailability().getFrom())
+				.availableTo(request.getTimeAvailability().getTo())
                 .build();
 
         JpaNeedEvent event = jpaNeedRepository.save(jpaNeedEvent);
