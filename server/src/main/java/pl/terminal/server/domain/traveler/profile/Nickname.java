@@ -9,7 +9,7 @@ public class Nickname {
 		this.nickname = nickname;
 	}
 
-	static Nickname empty() {
+	public static Nickname empty() {
 
 		return new Nickname("");
 	}

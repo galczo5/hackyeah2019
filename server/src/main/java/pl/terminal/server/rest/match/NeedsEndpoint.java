@@ -33,7 +33,7 @@ public class NeedsEndpoint {
 	public List<MatchDTO> getMatches(@PathVariable Long requestId) {
 		final List<Match> matches = matchingService.matchNeed(new NeedRequestId(requestId));
 		return matches.stream()
-				.map(match -> new MatchDTO(match, profileService.getProfile(match.getTravalerId())))
+				.map(match -> new MatchDTO(match, profileService.getProfile(match.getTravelerId())))
 				.collect(Collectors.toList());
 	}
 

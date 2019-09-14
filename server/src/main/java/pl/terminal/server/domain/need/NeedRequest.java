@@ -1,5 +1,7 @@
 package pl.terminal.server.domain.need;
 
+import java.util.Objects;
+import java.util.Set;
 import lombok.Builder;
 import lombok.Getter;
 import pl.terminal.server.domain.airport.AirportId;

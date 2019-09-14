@@ -12,9 +12,9 @@ import pl.terminal.server.domain.traveler.TravelerId;
 @Service
 public class StoryService {
 
-	@Autowired
 	private final StoryRepository storyRepository;
 
+	@Autowired
 	public StoryService(StoryRepository storyRepository) {
 		this.storyRepository = storyRepository;
 	}
@@ -31,6 +31,15 @@ public class StoryService {
 		storyRepository.findStoryById(storyId).ifPresent(
 				story -> {
 					story.like(liker);
+					storyRepository.updateStory(story);
+				}
+		);
+	}
+
+	public void unlikeStory(StoryId storyId, TravelerId liker) {
+		storyRepository.findStoryById(storyId).ifPresent(
+				story -> {
+					story.unlike(liker);
 					storyRepository.updateStory(story);
 				}
 		);
