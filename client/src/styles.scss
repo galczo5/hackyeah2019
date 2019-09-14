@@ -13,8 +13,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-$primary: #3f51b5;
+main {
+  height: calc(100% - 75px);
+  overflow: hidden;
+}
 
+$primary: #3f51b5;
 
 $size-0: 0px;
 $size-1: 10px;
