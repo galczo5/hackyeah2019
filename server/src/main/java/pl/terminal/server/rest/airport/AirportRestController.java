@@ -2,9 +2,10 @@ package pl.terminal.server.rest.airport;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.infrastructure.airport.AirportsService;
 
@@ -15,8 +16,11 @@ import java.util.Set;
 @RequestMapping("/api/airport")
 public class AirportRestController {
 
-    @Autowired
-    private AirportsService airportsService;
+    private final AirportsService airportsService;
+
+    public AirportRestController(AirportsService airportsService) {
+        this.airportsService = airportsService;
+    }
 
     @GetMapping
     public ResponseEntity<Set<Airport>> getAirports(AirportSearchQuery airportSearchQuery) {

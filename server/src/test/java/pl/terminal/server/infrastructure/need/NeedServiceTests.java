@@ -27,7 +27,7 @@ public class NeedServiceTests {
     @Test
     public void registerNeed() {
         RegisterNeedRequest registerNeedRequest = new RegisterNeedRequest(
-                new TravelerId("test"),
+                new TravelerId(1L),
                 Collections.singleton(Need.DRINK),
                 AirportId.builder().airportId(1L).build(),
                 new TimeAvailability(LocalDateTime.now(), LocalDateTime.now()));
