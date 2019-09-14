@@ -1,26 +1,20 @@
-<main class="location">
-  <div>
-    Hi [name],<br>
-    welcome to
+<main class="justified-center">
+  <div class="welcome-header">
+    <h2>
+      Welcome to
+    </h2>
+    <app-airport-list [airports]="locations"></app-airport-list>
   </div>
-  <div class="loader" *ngIf="showProgress()">
-    <mat-progress-spinner color="primary" mode="indeterminate">
-    </mat-progress-spinner>
+  <h3 class="question-header">
+    What do you want to do?
+  </h3>
+  <div class="grid two-cols" style="margin: 0 50px;">
+    <app-activity name="Eat"></app-activity>
+    <app-activity name="Drink"></app-activity>
+    <app-activity name="Chat"></app-activity>
+    <app-activity name="Explore"></app-activity>
   </div>
-  <div *ngIf="!showProgress()">
-    <div>
-      <mat-form-field>
-        <mat-select>
-          <mat-option *ngFor="let loc of locations" [value]="loc">
-            {{ loc }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-flat-button color="primary">
-        Find somebody to hang out
-      </button>
-    </div>
+  <div class="next-button-wrapper">
+    <button mat-flat-button color="primary">NEXT</button>
   </div>
 </main>

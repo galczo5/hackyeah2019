@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SetLocationComponent } from './set-location/set-location.component';
 import {RouterModule} from "@angular/router";
 import {MaterialModule} from "../material/material.module";
+import { AirportListComponent } from './airport-list/airport-list.component';
+import { ActivityComponent } from './activity/activity.component';
 
 const routes = [{
   path: '',
@@ -10,11 +12,11 @@ const routes = [{
 }];
 
 @NgModule({
-  declarations: [SetLocationComponent],
+  declarations: [SetLocationComponent, AirportListComponent, ActivityComponent],
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
-    MaterialModule,
-    CommonModule
+    MaterialModule
   ]
 })
 export class LocationModule { }

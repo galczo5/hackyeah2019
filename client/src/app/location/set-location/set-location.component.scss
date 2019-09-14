@@ -1,15 +1,49 @@
-.location {
+:host {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+
+  main {
+    width: 100%;
+  }
 }
 
-.location > div {
+.justified-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-header {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  > h2 {
+    text-align: center;
+    margin-bottom: 4px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  app-airport-list {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.question-header {
+  margin-top: 48px;
+  margin-bottom: 48px;
   text-align: center;
 }
 
 .loader {
   margin: 50px 0;
+}
+
+.next-button-wrapper {
+  margin-top: 48px;
+  text-align: center;
 }

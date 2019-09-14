@@ -18,6 +18,42 @@ $size-3: 25px;
   padding: $size-2;
 }
 
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: .54;
+}
+
+.grid {
+  display: grid;
+
+  &.two-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.three-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.four-cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.five-cols {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 .mat-tab-header {
   border: 0;
   margin: auto;
