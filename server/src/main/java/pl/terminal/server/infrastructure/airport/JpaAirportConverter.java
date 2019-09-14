@@ -23,6 +23,10 @@ public class JpaAirportConverter implements Converter<JpaAirport, Airport> {
     }
 
     private MeetingPoint convertMeetingPoint(JpaAirportMeetingPoint meetingPoint) {
+        if(meetingPoint == null) {
+            return MeetingPoint.empty();
+        }
+
         return MeetingPoint.builder()
                 .name(meetingPoint.getName())
                 .build();

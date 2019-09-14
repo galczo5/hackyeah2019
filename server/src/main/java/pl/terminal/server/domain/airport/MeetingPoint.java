@@ -11,4 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MeetingPoint {
     private String name;
+
+    public static MeetingPoint empty() {
+        return new MeetingPoint("");
+    }
 }
