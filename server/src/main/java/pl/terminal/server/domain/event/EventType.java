@@ -2,5 +2,5 @@ package pl.terminal.server.domain.event;
 
 public enum EventType {
     AIRPORT_VISITED,
-    PERSON_MET
+    PERSON_MET,
 }
