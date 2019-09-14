@@ -18,11 +18,17 @@ export class LoginService {
   selectCurrentUser(): void {
     this.httpClient
         .get(this.url)
-        .subscribe((trav) => {
+        .subscribe((rawTraveler: any) => {
 
-          console.log(trav);
+          const traveler = new Traveler(
+            rawTraveler.travelerId,
+            rawTraveler.nickname,
+            '',
+            rawTraveler.nationality,
+            rawTraveler.languages
+          );
 
-          this.activeTravelerStore.set(trav);
+          this.activeTravelerStore.set(traveler);
         });
   }
 
