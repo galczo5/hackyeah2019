@@ -6,6 +6,7 @@ import { AirportsService } from '../airports.service';
 import { Airport } from '../airport';
 import { SelectedActivitiesStore } from '../selected-activities-store.service';
 import { Activity } from './Activity';
+import { LoginService } from '../../login/login.service';
 
 export enum LocationFetchStatus {
   SUCCESS,
@@ -35,16 +36,19 @@ export class SetLocationComponent implements OnInit {
 
   constructor(private readonly airportsService: AirportsService,
               private readonly activitiesStore: SelectedActivitiesStore,
+              private readonly loginService: LoginService,
               private readonly router: Router) {
 
   }
 
   ngOnInit() {
-    let subscription: Subscription = this.airportsService.getAirports()
+    let subscription: Subscription = this.airportsService
+                                         .getAirports()
                                          .subscribe(airports => {
                                            this.locations = airports;
                                            this.fetchStatus = LocationFetchStatus.SUCCESS;
                                          });
+
 
     timer(5000)
       .subscribe(() => {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchProgressComponent } from './search-progress/search-progress.component';
-import {MaterialModule} from "../material/material.module";
-import {RouterModule} from "@angular/router";
+import { MaterialModule } from '../material/material.module';
+import { RouterModule } from '@angular/router';
 
 const routes = [{
   path: '',
@@ -17,4 +17,5 @@ const routes = [{
     MaterialModule
   ]
 })
-export class SearchProgressModule { }
+export class SearchProgressModule {
+}
