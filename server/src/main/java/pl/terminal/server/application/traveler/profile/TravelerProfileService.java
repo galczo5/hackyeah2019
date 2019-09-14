@@ -31,4 +31,5 @@ public class TravelerProfileService {
 	public List<TravelerProfile> getAllProfiles() {
 		return repository.getAllProfiles();
 	}
+
 }

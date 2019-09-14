@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
-import pl.terminal.server.domain.need.NeedRequest;
 import pl.terminal.server.domain.match.Match;
 import pl.terminal.server.domain.need.Need;
+import pl.terminal.server.domain.need.NeedRequest;
 import pl.terminal.server.domain.need.NeedRequestId;
 import pl.terminal.server.domain.need.RegisterNeedRequest;
 import pl.terminal.server.domain.need.TimeAvailability;
@@ -105,7 +105,7 @@ public class MatchingService {
 
 	private void toMatch(NeedRequest request) {
 		new Match(
-				profileService.getProfile(request.getTravelerId()),
+				request.getTravelerId(),
 				request.getNeeds(),
 				request.getTimeAvailability()
 		);
