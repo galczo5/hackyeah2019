@@ -2,6 +2,7 @@ package pl.terminal.server.application.match
 
 import pl.terminal.server.application.need.NeedService
 import pl.terminal.server.domain.airport.AirportId
+import pl.terminal.server.domain.need.MatchAcceptResult
 import pl.terminal.server.domain.need.NeedRequest
 import pl.terminal.server.domain.need.NeedRequestId
 import pl.terminal.server.domain.need.RegisterNeedRequest
@@ -41,5 +42,10 @@ class MockNeedService implements NeedService {
 	@Override
 	List<NeedRequest> findActiveNeedRequestsByAirport(AirportId airportId) {
 		return needsByAirports.get(airportId)
+	}
+
+	@Override
+	MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId) {
+		return null
 	}
 }
