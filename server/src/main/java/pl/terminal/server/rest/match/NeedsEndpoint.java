@@ -42,16 +42,19 @@ public class NeedsEndpoint {
 		return matchingService.registerNeed(requestDTO.toDomain());
 	}
 
-	@PostMapping("match/{requestId}/{matchRequestId}/accept")
-	public ResponseEntity<MatchAcceptResult> acceptMatch(@PathVariable Long requestId, @PathVariable Long matchRequestId) {
+	@PostMapping("match")
+	public ResponseEntity<MatchAcceptResult> acceptMatch(@RequestBody AcceptMatchRequest acceptMatchRequest) {
 		try {
 			MatchAcceptResult matchAcceptResult = matchingService.acceptMatch(
-					new NeedRequestId(requestId),
-					new NeedRequestId(matchRequestId));
+					acceptMatchRequest.getRequestId(),
+					acceptMatchRequest.getMatchRequestId());
 			return ResponseEntity.ok(matchAcceptResult);
 		} catch(IllegalArgumentException e) {
 			log.error("Exception in acceptMatch = {}", ExceptionUtils.getStackTrace(e));
 			return ResponseEntity.badRequest().build();
 		}
 	}
+
+//	@DeleteMapping("match")
+//	public ResponseEntity<MatchAcceptResult>
 }
