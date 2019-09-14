@@ -5,7 +5,9 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.coordinates.Coordinates;
+import pl.terminal.server.rest.airport.AirportSearchQuery;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -57,4 +59,11 @@ public class AirportsService {
         return (dx + dy) <= radius;
     }
 
+    public Set<Airport> getAllAirportsByQuery(AirportSearchQuery airportSearchQuery) {
+        if(airportSearchQuery.getLatitude() != 0.0 && airportSearchQuery.getLongitude() != 0.0) {
+            return Collections.singleton(findAirportByCoordinates(Coordinates.fromLonLat(airportSearchQuery.getLatitude(), airportSearchQuery.getLongitude())));
+        }
+
+        return getAllAirports();
+    }
 }
