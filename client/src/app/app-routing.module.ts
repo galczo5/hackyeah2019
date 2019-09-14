@@ -7,9 +7,10 @@ const routes: Routes = [
   { path: 'check-in', loadChildren: './check-in/check-in.module#CheckInModule', data: { num: 1 } },
   { path: 'search', loadChildren: './search-progress/search-progress.module#SearchProgressModule', data: { num: 2 } },
   { path: 'matched', loadChildren: './matched/matched.module#MatchedModule', data: { num: 3 } },
-  { path: 'explore', loadChildren: './explore/recomendation.module#RecomendationModule', data: { num: 4 } },
-  { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule', data: { num: 5 } },
-  { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 6 } },
+  { path: 'confirm', loadChildren: './confirm-meeting/confirm-meeting.module#ConfirmMeetingModule', data: { num: 4 } },
+  { path: 'explore', loadChildren: './explore/recomendation.module#RecomendationModule', data: { num: 5 } },
+  { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule', data: { num: 6 } },
+  { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 7 } },
   { path: '**', redirectTo: 'location', pathMatch: 'full' }
 ];
 
