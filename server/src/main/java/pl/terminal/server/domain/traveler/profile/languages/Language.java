@@ -1,4 +1,4 @@
-package pl.terminal.server.domain.language;
+package pl.terminal.server.domain.traveler.profile.languages;
 
 public enum Language {
 	AFRIKAANS,

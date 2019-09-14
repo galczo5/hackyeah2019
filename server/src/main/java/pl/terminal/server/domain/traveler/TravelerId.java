@@ -1,4 +1,4 @@
-package pl.terminal.server.domain;
+package pl.terminal.server.domain.traveler;
 
 import java.util.Objects;
 
