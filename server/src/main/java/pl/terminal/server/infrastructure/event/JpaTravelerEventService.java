@@ -1,7 +1,7 @@
 package pl.terminal.server.infrastructure.event;
 
 import org.springframework.stereotype.Service;
-import pl.terminal.server.domain.TravelerId;
+import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.domain.event.TravelerEvent;
 import pl.terminal.server.domain.event.TravelerEventService;
 

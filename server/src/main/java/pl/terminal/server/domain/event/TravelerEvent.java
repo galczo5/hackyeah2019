@@ -2,7 +2,7 @@ package pl.terminal.server.domain.event;
 
 import lombok.Builder;
 import lombok.Data;
-import pl.terminal.server.domain.TravelerId;
+import pl.terminal.server.domain.traveler.TravelerId;
 
 @Data
 @Builder
