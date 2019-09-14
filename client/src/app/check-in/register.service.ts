@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Store } from '../utils/Store';
-import { WaitingTime } from './WaitingTime';
 import { HttpClient } from '@angular/common/http';
 import { Observable, zip } from 'rxjs';
 import { SelectedAirportStore } from '../location/selected-airport.store';
 import { SelectedActivitiesStore } from '../location/selected-activities-store.service';
 import { ActiveTravelerStore } from '../traveler/active.traveler.store';
 import { WaitingTimeStore } from './waiting-time-store.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
+import { NeedRequestIdStore } from './need-request-id.store';
+import { NeedRequestId } from './need-request-id';
 
 export interface RegisterRequest {
 
@@ -27,13 +27,14 @@ export interface RegisterRequest {
 })
 export class RegisterService {
 
-  private readonly url = 'http://localhost:8080/needs/register';
+  private readonly url = 'http://localhost:8080/api/needs/register';
 
   constructor(private httpClient: HttpClient,
               private waitingTimeStore: WaitingTimeStore,
               private selectedActivitiesStore: SelectedActivitiesStore,
               private activeTravelerStore: ActiveTravelerStore,
-              private selectedAirportStore: SelectedAirportStore) {
+              private selectedAirportStore: SelectedAirportStore,
+              private needRequestIdStore: NeedRequestIdStore) {
   }
 
   register(): void {
@@ -46,14 +47,16 @@ export class RegisterService {
     )
       .pipe(
         switchMap((args) => {
-          console.log(args);
 
           const activities = args[0],
             traveler = args[1],
             airport = args[2],
             time = args[3];
 
-          console.log(traveler)
+          let availableToDate = new Date();
+
+          availableToDate.setHours(availableToDate.getHours() + time.hours);
+          availableToDate.setMinutes(availableToDate.getMinutes() + time.minutes);
 
           const request: RegisterRequest = {
 
@@ -65,7 +68,7 @@ export class RegisterService {
 
             availableFrom: new Date(),
 
-            availableTo: new Date()
+            availableTo: availableToDate
           } as any;
 
           return this.httpClient
@@ -73,13 +76,14 @@ export class RegisterService {
                        request
                      );
 
-        })
+        }),
+        take(1)
       )
-      .subscribe((response) => {
+      .subscribe((response: NeedRequestId) => {
 
-        console.log(response)
+        this.needRequestIdStore.set(response);
 
-      })
+      });
 
   }
 

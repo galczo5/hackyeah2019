@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const loggedInTraveler = new Traveler(7, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
+    const loggedInTraveler = new Traveler(1, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
     this.activeTravelerStore.set(loggedInTraveler);
   }
 

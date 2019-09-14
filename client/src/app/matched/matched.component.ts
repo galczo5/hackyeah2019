@@ -15,7 +15,7 @@ export class MatchedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.matched = new Traveler(7, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
+    this.matched = new Traveler(1, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
   }
 
 }

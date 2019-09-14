@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatchedService } from '../matched.service';
+import { interval } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-progress',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchProgressComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matchedService: MatchedService) {
+  }
 
   ngOnInit() {
+
+    interval(1000)
+      .pipe(
+        switchMap(() => {
+          return this.matchedService.findMatched();
+        })
+      )
+      .subscribe((a) => {
+        console.log(a);
+      });
   }
 
 }
