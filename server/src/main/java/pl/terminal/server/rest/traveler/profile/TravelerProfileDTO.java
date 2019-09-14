@@ -9,7 +9,7 @@ import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
 @SuppressWarnings("WeakerAccess")
 public class TravelerProfileDTO {
 
-	public String travelerId;
+	public Long travelerId;
 
 	public String nickname;
 

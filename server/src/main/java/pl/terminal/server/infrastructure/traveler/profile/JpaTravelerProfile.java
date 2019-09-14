@@ -4,12 +4,10 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import pl.terminal.server.domain.traveler.profile.languages.Language;
 import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
 
@@ -17,31 +15,33 @@ import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
 public class JpaTravelerProfile {
 
 	@Id
-	private String travelerId;
+	private Long travelerId;
 
 	private String nickname;
 
+	@Enumerated(EnumType.STRING)
 	private Nationality nationality;
 
 	@ElementCollection
 	@CollectionTable(name = "traveler_languages", joinColumns = @JoinColumn(name = "traveler_id"))
+	@Enumerated(EnumType.STRING)
 	private Set<Language> languages;
 
 	public JpaTravelerProfile() {
 	}
 
-	JpaTravelerProfile(String travelerId, String nickname, Nationality nationality, Set<Language> languages) {
+	JpaTravelerProfile(Long travelerId, String nickname, Nationality nationality, Set<Language> languages) {
 		this.travelerId = travelerId;
 		this.nickname = nickname;
 		this.nationality = nationality;
 		this.languages = languages;
 	}
 
-	public String getTravelerId() {
+	public Long getTravelerId() {
 		return travelerId;
 	}
 
-	public void setTravelerId(String travelerId) {
+	public void setTravelerId(Long travelerId) {
 		this.travelerId = travelerId;
 	}
 

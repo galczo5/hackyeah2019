@@ -1,5 +1,7 @@
 package pl.terminal.server.rest.traveler.profile;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +25,22 @@ public class TravelerProfileEndpoint {
 	}
 
 	@GetMapping(value = "/{travelerId}", produces = "application/json")
-	public TravelerProfileDTO getProfile(@PathVariable String travelerId) {
+	public TravelerProfileDTO getProfile(@PathVariable Long travelerId) {
 		final TravelerProfile profile = profileService.getProfile(new TravelerId(travelerId));
 		return new TravelerProfileDTO(profile);
 	}
 
 	@PostMapping(value = "/{travelerId}")
-	public void updateProfile(@PathVariable String travelerId, @RequestBody UpdateProfileRequestDTO requestDTO) {
+	public void updateProfile(@PathVariable Long travelerId, @RequestBody UpdateProfileRequestDTO requestDTO) {
 		profileService.updateProfile(requestDTO.toDomain(new TravelerId(travelerId)));
 	}
+
+	@GetMapping(produces = "application/json")
+	public List<TravelerProfileDTO> getProfiles() {
+		final List<TravelerProfile> profiles = profileService.getAllProfiles();
+		return profiles.stream().map(TravelerProfileDTO::new).collect(Collectors.toList());
+	}
+
+
 
 }
