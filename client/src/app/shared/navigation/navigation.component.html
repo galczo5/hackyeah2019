@@ -1,14 +1,39 @@
-<nav class="bottom-nav">
+<nav class="bottom-nav pl-3 pr-3">
   <div [routerLink]="['location']">
-    Check-in
+    <div [class.active]="url === '/location'">
+      <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 8C7.09375 8 8 7.125 8 6C8 4.90625 7.09375 4 6 4C4.875 4 4 4.90625 4 6C4 7.125 4.875 8 6 8Z" fill="#CD4470"/>
+        <path d="M5.99415 0C2.65366 0 0 2.7161 0 5.99415C0 8.24195 0.718049 8.92878 4.71415 15.2976C5.30732 16.2341 6.64976 16.2341 7.24293 15.2976C11.239 8.92878 11.9883 8.24195 11.9883 5.99415C11.9883 2.68488 9.27219 0 5.99415 0ZM5.99415 14.4859C1.99805 8.11707 1.49854 7.71122 1.49854 5.99415C1.49854 3.5278 3.49659 1.49854 5.99415 1.49854C8.46049 1.49854 10.4898 3.5278 10.4898 5.99415C10.4898 7.71122 9.99024 8.05463 5.99415 14.4859Z" fill="#2F05B0"/>
+      </svg>
+      <span>
+        Check-in
+      </span>
+    </div>
   </div>
 
   <div [routerLink]="['explore']">
-    Stories
+    <div [class.active]="url === '/explore'">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.3789 8.22708C12.2547 7.32703 12.2 5.82694 11.242 4.98144C10.3661 4.24503 9.10708 4.3814 8.31332 5.19963L8.01224 5.49965L7.68379 5.19963C6.91741 4.3814 5.63098 4.24503 4.78248 4.98144C3.79713 5.82694 3.74239 7.32703 4.61826 8.22708L7.65642 11.3364C7.71117 11.4182 7.87539 11.5 7.98487 11.5C8.12173 11.5 8.25858 11.4182 8.34069 11.3364L11.3789 8.22708Z" fill="#CD4470"/>
+        <circle cx="8" cy="8" r="7.25" stroke="#2F05B0" stroke-width="1.5"/>
+      </svg>
+      <span>
+        Stories
+      </span>
+    </div>
   </div>
 
   <div [routerLink]="['profile']">
-    Profile
+    <div [class.active]="url === '/profile'">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="8" r="7.25" stroke="#2F05B0" stroke-width="1.5"/>
+        <circle cx="8" cy="6" r="1.25" fill="#CD4470" stroke="#CD4470" stroke-width="1.5"/>
+        <path d="M5 11.5C6.8 9.50003 9.2 9.50003 11 11.5" stroke="#CD4470" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        Profile
+      </span>
+    </div>
   </div>
 
 </nav>

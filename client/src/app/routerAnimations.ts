@@ -13,7 +13,7 @@ export function routerAnimation() {
     transition('-1 => *', [
       query(':enter', [
         style({
-          position: 'fixed',
+          position: 'fixed', height: 'calc(100vh - 76px)',
           width: '100%',
           transform: 'translateX(-100%)',
         }),
@@ -33,7 +33,7 @@ export function routerAnimation() {
       query(
         ':enter',
         style({
-          position: 'fixed',
+          position: 'fixed', height: 'calc(100vh - 76px)',
           width: '100%',
           transform: 'translateX(-100%)',
         }),
@@ -46,7 +46,7 @@ export function routerAnimation() {
           animate(
             '500ms ease',
             style({
-              position: 'fixed',
+              position: 'fixed', height: 'calc(100vh - 76px)',
               width: '100%',
               transform: 'translateX(100%)',
             }),
@@ -72,7 +72,7 @@ export function routerAnimation() {
       query(
         ':enter',
         style({
-          position: 'fixed',
+          position: 'fixed', height: 'calc(100vh - 76px)',
           width: '100%',
           transform: 'translateX(100%)',
         }),
@@ -85,7 +85,7 @@ export function routerAnimation() {
           animate(
             '500ms ease',
             style({
-              position: 'fixed',
+              position: 'fixed', height: 'calc(100vh - 76px)',
               width: '100%',
               transform: 'translateX(-100%)',
             }),
