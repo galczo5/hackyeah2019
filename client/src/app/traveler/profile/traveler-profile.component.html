@@ -1,41 +1,13 @@
-<div class="profile-avatar">
-
-  <div class="profile-container-image">
-
-    <div class="profile-image">
-
-    </div>
-
-  </div>
-
-</div>
-
-<div class="profile-info">
-
-  <h1>
-    {{traveler.name}}
-  </h1>
-
-  <h2>
-    {{traveler.nationality}}
-  </h2>
-
-  <p>
-    <span *ngFor="let lang of traveler.languages; last as last">
-        {{lang}} <span *ngIf="!last">*</span>
-    </span>
-  </p>
-
-</div>
+<app-profile [userInfo]="traveler" [topBar]="true">
+</app-profile>
 
 <mat-tab-group>
   <mat-tab label="Airports">
     <app-traveler-airports></app-traveler-airports>
   </mat-tab>
   <mat-tab label="Foreigners">
-    <app-traveler-badges></app-traveler-badges>
+    <app-traveler-foreigners></app-traveler-foreigners>
   </mat-tab>
-
 </mat-tab-group>
 
 

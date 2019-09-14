@@ -1,0 +1,36 @@
+@import '../../../styles.scss';
+
+$image-size: 140px;
+
+
+.profile-avatar {
+  position: relative;
+  height: $image-size;
+
+  &.top-bar {
+    background: #ccc;
+  }
+
+  .profile-container-image {
+    bottom: -1 * ($image-size / 2);
+    height: $image-size;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  .profile-image {
+    background: #999;
+    border-radius: $image-size;
+    height: $image-size;
+    margin: auto;
+    width: $image-size;
+  }
+}
+
+.profile-info {
+  margin-bottom: $size-3;
+  margin-top: $size-3 + $image-size / 2;
+  text-align: center;
+
+}

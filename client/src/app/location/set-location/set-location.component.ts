@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs'
+import {Subscription, timer} from 'rxjs'
+import {AirportsService} from "../airports.service";
+import {Airport} from "../airport";
+import {filter} from "rxjs/operators";
 
 export enum LocationFetchStatus {
   SUCCESS,
@@ -14,21 +17,27 @@ export enum LocationFetchStatus {
 })
 export class SetLocationComponent implements OnInit {
 
-  locations: Array<string> = [
-    'WAW - Warsaw Chopin',
-    'WMI - Warsaw Modlin',
-    'LAX - Los Angeles',
-    'DBL - Dublin'
-  ];
+  locations: Array<Airport> = [];
 
   fetchStatus: LocationFetchStatus = LocationFetchStatus.IN_PROGRES;
 
-  constructor() { }
+  constructor(private readonly airportsService: AirportsService) {
+
+  }
 
   ngOnInit() {
-    timer(2500)
+    let subscription: Subscription = this.airportsService.getAirports()
+      .subscribe(airports => {
+        this.locations = airports;
+        this.fetchStatus = LocationFetchStatus.SUCCESS;
+      });
+
+    timer(5000)
       .subscribe(() => {
-        this.fetchStatus = LocationFetchStatus.FAIL;
+        if (this.fetchStatus === LocationFetchStatus.IN_PROGRES) {
+          subscription.unsubscribe();
+          this.fetchStatus = LocationFetchStatus.FAIL;
+        }
       });
   }
 

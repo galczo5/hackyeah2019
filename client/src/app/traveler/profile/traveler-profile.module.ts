@@ -5,8 +5,10 @@ import { RouterModule } from '@angular/router';
 import { TravelerProfileComponent } from './traveler-profile.component';
 import { MaterialModule } from '../../material/material.module';
 import { AirportAchievementService } from '../achivement/airports/airport-achievement.service';
-import { TravelerBadgesComponent } from '../achivement/badges/traveler-badges.component';
 import { TravelerAirportsComponent } from '../achivement/airports/traveler-airports.component';
+import { TravelerForeignersComponent } from '../achivement/foreigners/traveler-foreigners.component';
+import { ForeignersAchievementService } from '../achivement/foreigners/foreigners-achievement.service';
+import { ProfileModule } from '../../shared/profile/profile.module';
 
 const routes = [{
   path: '',
@@ -17,15 +19,17 @@ const routes = [{
   imports: [
     CommonModule,
     MaterialModule,
+    ProfileModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
     TravelerProfileComponent,
-    TravelerBadgesComponent,
+    TravelerForeignersComponent,
     TravelerAirportsComponent
   ],
   providers: [
-    AirportAchievementService
+    AirportAchievementService,
+    ForeignersAchievementService
   ]
 })
 export class TravelerProfileModule {}

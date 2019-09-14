@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.terminal.server.domain.event.EventType;
 
+import java.util.Map;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -13,4 +15,5 @@ import pl.terminal.server.domain.event.EventType;
 public class RegisterEventRequest {
     private String user;
     private EventType eventType;
+    private Map<String, Object> payload;
 }

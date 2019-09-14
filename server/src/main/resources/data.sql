@@ -1,5 +1,5 @@
-insert into AIRPORTS VALUES(1, 'WAW', 'Warsaw Chopin Airport');
-insert into AIRPORTS VALUES(2, 'WMI', 'Warsaw Modlin Airport');
-insert into AIRPORTS VALUES(3, 'SIN', 'Singapore Changi Airport');
-insert into AIRPORTS VALUES(4, 'AAA', 'Anaa Airport');
-insert into AIRPORTS VALUES(5, 'AAB', 'Arrabury Airport');
+insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(1, 'WAW', 'Warsaw Chopin Airport', 52.159499362, 20.966996132);
+insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(2, 'WMI', 'Warsaw Modlin Airport', 52.450664864, 20.650997396);
+insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(3, 'SIN', 'Singapore Changi Airport', 1.345010, 103.983208);
+insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(4, 'AAA', 'Anaa Airport', -17.3489, -145.513);
+insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(5, 'AAB', 'Arrabury Airport', -26.7, 141.05);

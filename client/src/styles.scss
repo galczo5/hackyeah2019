@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 $background-color: #fafafa;
@@ -10,6 +9,8 @@ html, body {
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+$primary: #3f51b5;
+
 $size-1: 10px;
 $size-2: 20px;
 $size-3: 25px;
@@ -18,9 +19,50 @@ $size-3: 25px;
   padding: $size-2;
 }
 
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: .54;
+}
+
+.grid {
+  display: grid;
+
+  &.two-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &.three-cols {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.four-cols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &.five-cols {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 .mat-tab-header {
   border: 0;
   margin: auto;
+}
+
+.mat-tab-label {
+  color: $primary;
+  font-weight: bold;
 }
 
 .p-0 {

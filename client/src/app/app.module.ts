@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { FAKE_LOCATION } from './geolocation/geolocation.service';
 import { MaterialModule } from './material/material.module';
 import { ActiveTravelerStore } from './traveler/active.traveler.store';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ActiveTravelerStore } from './traveler/active.traveler.store';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
