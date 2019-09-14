@@ -6,10 +6,11 @@ import { TravelerProfileModule } from './traveler/profile/traveler-profile.modul
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'profile', pathMatch: 'full' },
+  { path: '', redirectTo: 'location', pathMatch: 'full' },
+  { path: 'location', loadChildren: './location/location.module#LocationModule' },
   { path: 'friends', loadChildren: './traveler/friends/traveler-friends.module#TravelerFriendsModule' },
   { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule' },
-  { path: '**', redirectTo: 'profile', pathMatch: 'full' }
+  { path: '**', redirectTo: 'location', pathMatch: 'full' }
 ];
 
 @NgModule({
