@@ -1,0 +1,6 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <p>
+    <input name="travelerId" ngModel required #travelerId="ngModel">
+  </p>
+  <colored-button >Submit</colored-button>
+</form>

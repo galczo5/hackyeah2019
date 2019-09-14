@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'matched', loadChildren: './matched/matched.module#MatchedModule', data: { num: 3 } },
   { path: 'explore', loadChildren: './explore/recomendation.module#RecomendationModule', data: { num: 4 } },
   { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule', data: { num: 5 } },
+  { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 6 } },
   { path: '**', redirectTo: 'location', pathMatch: 'full' }
 ];
 
