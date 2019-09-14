@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 $background-color: #fafafa;
@@ -9,6 +8,8 @@ html, body {
   background: $background-color;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$primary: #3f51b5;
 
 $size-1: 10px;
 $size-2: 20px;
@@ -57,6 +58,11 @@ h3 {
 .mat-tab-header {
   border: 0;
   margin: auto;
+}
+
+.mat-tab-label {
+  color: $primary;
+  font-weight: bold;
 }
 
 .p-0 {
