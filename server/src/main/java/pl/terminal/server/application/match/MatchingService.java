@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.need.NeedRequest;
@@ -18,22 +20,24 @@ import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.languages.Languages;
 import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
 
+@Service
 public class MatchingService {
 
 	private final NeedService needService;
 
 	private final TravelerProfileService profileService;
 
+	@Autowired
 	public MatchingService(NeedService needService, TravelerProfileService profileService) {
 		this.needService = needService;
 		this.profileService = profileService;
 	}
 
-	NeedRequestId registerNeed(RegisterNeedRequest request) {
+	public NeedRequestId registerNeed(RegisterNeedRequest request) {
 		return needService.registerNeed(request);
 	}
 
-	List<Match> matchNeed(NeedRequestId requestId) {
+	public List<Match> matchNeed(NeedRequestId requestId) {
 		final NeedRequest need = needService.findNeedRequest(requestId);
 		final List<NeedRequest> requests = needService.findActiveNeedRequestsByAirport(need.getAirportId());
 		final Map<NeedRequest, Integer> factors = calculateMatchFactors(need, requests);
@@ -85,7 +89,7 @@ public class MatchingService {
 	private Integer calculateTimeAvailabilityFactor(TimeAvailability timeAvailability1, TimeAvailability timeAvailability2) {
 		final Integer commonMinutes = timeAvailability1.commonMinutes(timeAvailability2);
 		if (commonMinutes < 30) {
-			return commonMinutes;
+			return 0;
 		}
 		return Double.valueOf(Math.floor(Double.valueOf(commonMinutes) / 30.0)).intValue();
 	}

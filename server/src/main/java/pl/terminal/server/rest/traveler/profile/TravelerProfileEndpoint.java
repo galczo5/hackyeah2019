@@ -29,11 +29,9 @@ public class TravelerProfileEndpoint {
 		return new TravelerProfileDTO(profile);
 	}
 
-
 	@PostMapping(value = "/{travelerId}")
 	public void updateProfile(@PathVariable String travelerId, @RequestBody UpdateProfileRequestDTO requestDTO) {
 		profileService.updateProfile(requestDTO.toDomain(new TravelerId(travelerId)));
 	}
-
 
 }
