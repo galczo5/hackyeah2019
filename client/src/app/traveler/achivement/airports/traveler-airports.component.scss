@@ -1,0 +1,14 @@
+$achiv-size: 80px;
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+.profile-achivement {
+  background: purple;
+  border-radius: $achiv-size;
+  display: inline-block;
+  width: $achiv-size;
+  height: $achiv-size;
+}

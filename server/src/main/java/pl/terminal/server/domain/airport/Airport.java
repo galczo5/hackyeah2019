@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.terminal.server.domain.coordinates.Coordinates;
 
 @Builder
 @AllArgsConstructor
@@ -13,4 +14,5 @@ public class Airport {
     private Long id;
     private String name;
     private String code;
+    private Coordinates coordinates;
 }
