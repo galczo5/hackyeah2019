@@ -8,7 +8,12 @@ export enum LocationFetchStatus {
   SUCCESS,
   IN_PROGRES,
   FAIL
-};
+}
+
+export interface Activity {
+  name: string;
+  imageUrl: string;
+}
 
 @Component({
   selector: 'app-set-location',
@@ -20,6 +25,15 @@ export class SetLocationComponent implements OnInit {
   locations: Array<Airport> = [];
 
   fetchStatus: LocationFetchStatus = LocationFetchStatus.IN_PROGRES;
+
+  activities: Array<Activity> = [
+    { name: 'Eat', imageUrl: '' },
+    { name: 'Drink', imageUrl: '' },
+    { name: 'Chat', imageUrl: '' },
+    { name: 'Explore', imageUrl: '' }
+  ];
+
+  selectedActivities: Array<Activity> = [];
 
   constructor(private readonly airportsService: AirportsService) {
 
@@ -39,6 +53,18 @@ export class SetLocationComponent implements OnInit {
           this.fetchStatus = LocationFetchStatus.FAIL;
         }
       });
+  }
+
+  toggleActivity(activity: Activity): void {
+    if (this.activityActive(activity)) {
+      this.selectedActivities = this.selectedActivities.filter(a => a.name !== activity.name);
+    }  else {
+      this.selectedActivities.push(activity);
+    }
+  }
+
+  activityActive(activity: Activity): boolean {
+    return !!this.selectedActivities.some(a => a.name === activity.name);
   }
 
   showProgress(): boolean {

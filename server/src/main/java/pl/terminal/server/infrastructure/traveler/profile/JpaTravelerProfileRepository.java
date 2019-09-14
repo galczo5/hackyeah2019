@@ -1,6 +1,9 @@
 package pl.terminal.server.infrastructure.traveler.profile;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.traveler.TravelerId;
@@ -25,6 +28,11 @@ public class JpaTravelerProfileRepository implements TravelerProfileRepository {
 		return profile
 				.map(this::toTravelerProfile)
 				.orElse(TravelerProfile.empty(travelerId));
+	}
+
+	@Override
+	public List<TravelerProfile> getAllProfiles() {
+		return StreamSupport.stream(jpaRepository.findAll().spliterator(), false).map(this::toTravelerProfile).collect(Collectors.toList());
 	}
 
 	private TravelerProfile toTravelerProfile(JpaTravelerProfile jpaTravelerProfile) {

@@ -1,12 +1,12 @@
 package pl.terminal.server.application.traveler.profile;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.TravelerProfileRepository;
 import pl.terminal.server.domain.traveler.profile.UpdateProfileRequest;
-import pl.terminal.server.rest.traveler.profile.UpdateProfileRequestDTO;
 
 @Service
 public class TravelerProfileService {
@@ -26,5 +26,9 @@ public class TravelerProfileService {
 		TravelerProfile profile = repository.getProfileFor(request.getTravelerId());
 		profile.updateProfile(request);
 		repository.updateProfile(profile);
+	}
+
+	public List<TravelerProfile> getAllProfiles() {
+		return repository.getAllProfiles();
 	}
 }

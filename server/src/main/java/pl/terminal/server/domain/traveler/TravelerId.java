@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class TravelerId {
 
-	private final String id;
+	private final Long id;
 
-	public TravelerId(String id) {
+	public TravelerId(Long id) {
 		this.id = id;
 	}
 
@@ -27,7 +27,7 @@ public class TravelerId {
 		return Objects.hash(id);
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 }
