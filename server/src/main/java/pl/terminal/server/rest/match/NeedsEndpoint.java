@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@RequestMapping("needs")
+@RequestMapping("/api/needs")
 public class NeedsEndpoint {
 
 	private final MatchingService matchingService;
@@ -29,7 +29,7 @@ public class NeedsEndpoint {
 		this.profileService = profileService;
 	}
 
-	@GetMapping(value = "/match/{requestId}", produces = "application/json")
+	@GetMapping(value = "match/{requestId}", produces = "application/json")
 	public List<MatchDTO> getMatches(@PathVariable Long requestId) {
 		final List<Match> matches = matchingService.matchNeed(new NeedRequestId(requestId));
 		return matches.stream()
@@ -37,12 +37,12 @@ public class NeedsEndpoint {
 				.collect(Collectors.toList());
 	}
 
-	@PostMapping(value = "/register")
+	@PostMapping(value = "register")
 	public NeedRequestId registerNeed(@RequestBody RegisterNeedRequestDTO requestDTO) {
 		return matchingService.registerNeed(requestDTO.toDomain());
 	}
 
-	@PostMapping("/match/{requestId}/{matchRequestId}/accept")
+	@PostMapping("match/{requestId}/{matchRequestId}/accept")
 	public ResponseEntity<MatchAcceptResult> acceptMatch(@PathVariable Long requestId, @PathVariable Long matchRequestId) {
 		try {
 			MatchAcceptResult matchAcceptResult = matchingService.acceptMatch(
