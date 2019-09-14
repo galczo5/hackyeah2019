@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchedService } from '../matched.service';
 import { interval } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, takeWhile, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-progress',
@@ -10,6 +10,8 @@ import { map, switchMap } from 'rxjs/operators';
 })
 export class SearchProgressComponent implements OnInit {
 
+  gotMatched = false;
+
   constructor(private matchedService: MatchedService) {
   }
 
@@ -17,12 +19,20 @@ export class SearchProgressComponent implements OnInit {
 
     interval(1000)
       .pipe(
+        takeWhile(() => !this.gotMatched),
         switchMap(() => {
           return this.matchedService.findMatched();
+        }),
+        tap((matchedPpl: Array<any>) => {
+
+          if (matchedPpl.length > 0) {
+            this.gotMatched = true;
+          }
+
         })
       )
-      .subscribe((a) => {
-        console.log(a);
+      .subscribe((matchedPpl) => {
+        console.log(matchedPpl);
       });
   }
 
