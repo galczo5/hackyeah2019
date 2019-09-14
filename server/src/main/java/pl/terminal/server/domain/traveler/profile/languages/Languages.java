@@ -26,4 +26,16 @@ public class Languages {
 	public Set<Language> getAsSet() {
 		return new HashSet<>(languages);
 	}
+
+	public boolean contains(Language language) {
+		return languages.contains(language);
+	}
+
+	public Integer commonCount(Languages otherLanguages) {
+		return Long.valueOf(
+				getAsSet().stream()
+						.filter(l -> otherLanguages.getAsSet().contains(l))
+						.count()
+		).intValue();
+	}
 }
