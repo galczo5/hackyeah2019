@@ -9,7 +9,6 @@ import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.languages.Languages;
 import pl.terminal.server.domain.traveler.profile.nationality.Nationality;
-import pl.terminal.server.infrastructure.need.MatchAcceptResult;
 
 import java.util.ArrayList;
 import java.util.List;

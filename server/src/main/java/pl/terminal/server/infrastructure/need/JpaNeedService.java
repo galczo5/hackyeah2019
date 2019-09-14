@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.domain.airport.AirportId;
-import pl.terminal.server.domain.need.NeedRequest;
-import pl.terminal.server.domain.need.NeedRequestId;
-import pl.terminal.server.domain.need.RegisterNeedRequest;
-import pl.terminal.server.domain.need.TimeAvailability;
+import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.TravelerId;
 
 import java.util.List;

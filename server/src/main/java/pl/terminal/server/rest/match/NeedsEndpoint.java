@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.terminal.server.application.match.MatchingService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.match.Match;
+import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequestId;
-import pl.terminal.server.infrastructure.need.MatchAcceptResult;
 
 import java.util.List;
 import java.util.stream.Collectors;

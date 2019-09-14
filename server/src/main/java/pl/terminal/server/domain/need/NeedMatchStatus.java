@@ -1,4 +1,4 @@
-package pl.terminal.server.infrastructure.need;
+package pl.terminal.server.domain.need;
 
 public enum NeedMatchStatus {
     ACCEPTED, CONFIRMED
