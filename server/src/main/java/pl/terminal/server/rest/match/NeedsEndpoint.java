@@ -1,19 +1,20 @@
 package pl.terminal.server.rest.match;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.terminal.server.application.match.MatchingService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.match.Match;
 import pl.terminal.server.domain.need.NeedRequestId;
+import pl.terminal.server.infrastructure.need.MatchAcceptResult;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
 @RestController
 @RequestMapping("needs")
 public class NeedsEndpoint {
@@ -39,5 +40,18 @@ public class NeedsEndpoint {
 	@PostMapping(value = "/register")
 	public NeedRequestId registerNeed(@RequestBody RegisterNeedRequestDTO requestDTO) {
 		return matchingService.registerNeed(requestDTO.toDomain());
+	}
+
+	@PostMapping("/match/{requestId}/{matchRequestId}/accept")
+	public ResponseEntity<MatchAcceptResult> acceptMatch(@PathVariable Long requestId, @PathVariable Long matchRequestId) {
+		try {
+			MatchAcceptResult matchAcceptResult = matchingService.acceptMatch(
+					new NeedRequestId(requestId),
+					new NeedRequestId(matchRequestId));
+			return ResponseEntity.ok(matchAcceptResult);
+		} catch(IllegalArgumentException e) {
+			log.error("Exception in acceptMatch = {}", ExceptionUtils.getStackTrace(e));
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

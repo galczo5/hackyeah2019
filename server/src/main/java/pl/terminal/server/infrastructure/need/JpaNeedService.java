@@ -19,6 +19,9 @@ public class JpaNeedService implements NeedService {
     @Autowired
     private JpaNeedEventRepository jpaNeedRepository;
 
+    @Autowired
+    private JpaAcceptNeedEventRepository jpaAcceptNeedEventRepository;
+
 
     @Override
     public NeedRequestId registerNeed(RegisterNeedRequest request) {
@@ -52,8 +55,28 @@ public class JpaNeedService implements NeedService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId) {
+        JpaNeedEvent needRequest = jpaNeedRepository.findById(needRequestId.getId()).orElseThrow(IllegalAccessError::new);
+        JpaNeedEvent matchNeedRequest = jpaNeedRepository.findById(matchAcceptId.getId()).orElseThrow(IllegalAccessError::new);
+
+        JpaAcceptNeedEvent acceptNeedEvent = JpaAcceptNeedEvent.builder()
+                .needRequestId(needRequest.getId())
+                .matchNeedRequestId(matchNeedRequest.getId())
+                .needMatchStatus(NeedMatchStatus.ACCEPTED)
+                .build();
+
+        JpaAcceptNeedEvent persistedAcceptEvent = jpaAcceptNeedEventRepository.save(acceptNeedEvent);
+
+        return MatchAcceptResult.builder()
+                .id(persistedAcceptEvent.getId())
+                .status(persistedAcceptEvent.getNeedMatchStatus())
+                .build();
+    }
+
     private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
         return NeedRequest.builder()
+                .needRequestId(new NeedRequestId(jpaNeedEvent.getId()))
                 .airportId(new AirportId(jpaNeedEvent.getAirportId()))
                 .needs(jpaNeedEvent.getNeeds())
                 .timeAvailability(new TimeAvailability(jpaNeedEvent.getAvailableFrom(), jpaNeedEvent.getAvailableTo()))
