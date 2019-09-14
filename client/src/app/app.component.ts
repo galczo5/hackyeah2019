@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const loggedInTraveler = new Traveler('Roman Borsuk', '', 'Poland', ['Suahili']);
+    const loggedInTraveler = new Traveler('Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
     this.activeTravelerStore.set(loggedInTraveler);
   }
 }

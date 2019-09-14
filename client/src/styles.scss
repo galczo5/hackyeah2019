@@ -17,3 +17,28 @@ $size-3: 25px;
 .app-wrapper {
   padding: $size-2;
 }
+
+.mat-tab-header {
+  border: 0;
+  margin: auto;
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.m-1 {
+  margin: $size-1;
+}
+
+.m-2 {
+  margin: $size-2;
+}
+
+.m-3 {
+  margin: $size-3;
+}

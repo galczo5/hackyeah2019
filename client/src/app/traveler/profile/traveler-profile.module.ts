@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { TravelerProfileComponent } from './traveler-profile.component';
-import { TravelerAirportsComponent } from './airports/traveler-airports.component';
-import { TravelerBadgesComponent } from './badges/traveler-badges.component';
 import { MaterialModule } from '../../material/material.module';
+import { AirportAchievementService } from '../achivement/airports/airport-achievement.service';
+import { TravelerBadgesComponent } from '../achivement/badges/traveler-badges.component';
+import { TravelerAirportsComponent } from '../achivement/airports/traveler-airports.component';
 
 const routes = [{
   path: '',
@@ -22,6 +23,9 @@ const routes = [{
     TravelerProfileComponent,
     TravelerBadgesComponent,
     TravelerAirportsComponent
+  ],
+  providers: [
+    AirportAchievementService
   ]
 })
 export class TravelerProfileModule {}
