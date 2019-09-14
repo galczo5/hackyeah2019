@@ -13,11 +13,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-main {
-  height: calc(100% - 75px);
-  overflow: hidden;
-}
-
 $primary: #3f51b5;
 
 $size-0: 0px;
@@ -109,17 +104,6 @@ h3 {
   }
 }
 
-.above-buttons-area {
-  height: calc(100vh - 125px);
-  overflow-y: scroll;
-}
-
-.next-button-wrapper {
-  height: 125px;
-  margin-top: 48px;
-  text-align: center;
-}
-
 .colored-button {
   display: block;
   margin: auto;
@@ -132,4 +116,16 @@ h3 {
     width: 100%;
     border-radius: 20px;
   }
+}
+
+.next-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
