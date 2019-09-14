@@ -10,6 +10,9 @@ export class ActivityComponent implements OnInit {
   @Input()
   name: string;
 
+  @Input()
+  active: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

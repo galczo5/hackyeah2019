@@ -3,9 +3,14 @@
 }
 
 .activity-img {
+  box-sizing: border-box;
   display: inline-block;
   border-radius: 50%;
   width: 100px;
   height: 100px;
   background: #C4C4C4;
+
+  &.active {
+    border: 3px solid red;
+  }
 }
