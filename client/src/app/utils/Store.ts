@@ -4,7 +4,7 @@ export abstract class Store<T> {
 
   private value$: ReplaySubject<T> = new ReplaySubject<T>(1);
 
-  constructor(defaultValue?: T) {
+  protected constructor(defaultValue?: T) {
     if (defaultValue !== undefined) {
       this.set(defaultValue);
     }

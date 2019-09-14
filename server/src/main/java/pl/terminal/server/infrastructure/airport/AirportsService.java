@@ -1,11 +1,12 @@
 package pl.terminal.server.infrastructure.airport;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.coordinates.Coordinates;
+import pl.terminal.server.rest.airport.AirportSearchQuery;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,16 +14,19 @@ import java.util.stream.Collectors;
 @Service
 public class AirportsService {
 
-    @Autowired
-    private AirportsRepository airportsRepository;
+    private final AirportsRepository airportsRepository;
 
-    @Autowired
-    private JpaAirportConverter jpaAirportConverter;
+    private final JpaAirportConverter jpaAirportConverter;
+
+    public AirportsService(AirportsRepository airportsRepository, JpaAirportConverter jpaAirportConverter) {
+        this.airportsRepository = airportsRepository;
+        this.jpaAirportConverter = jpaAirportConverter;
+    }
 
     public Set<Airport> getAllAirports() {
         return airportsRepository.getAirports()
                 .stream()
-                .map(jpaAirport -> jpaAirportConverter.convert(jpaAirport))
+                .map(jpaAirportConverter::convert)
                 .collect(Collectors.toSet());
     }
 
@@ -57,4 +61,11 @@ public class AirportsService {
         return (dx + dy) <= radius;
     }
 
+    public Set<Airport> getAllAirportsByQuery(AirportSearchQuery airportSearchQuery) {
+        if(airportSearchQuery.getLatitude() != 0.0 && airportSearchQuery.getLongitude() != 0.0) {
+            return Collections.singleton(findAirportByCoordinates(Coordinates.fromLonLat(airportSearchQuery.getLatitude(), airportSearchQuery.getLongitude())));
+        }
+
+        return getAllAirports();
+    }
 }

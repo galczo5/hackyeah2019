@@ -1,14 +1,12 @@
 package pl.terminal.server.domain.coordinates;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Setter
 public class Coordinates {
     private double latitude;
     private double longitude;
