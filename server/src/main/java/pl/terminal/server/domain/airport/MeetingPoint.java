@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 @Builder
@@ -14,6 +15,6 @@ public class MeetingPoint {
     private String description;
 
     public static MeetingPoint empty() {
-        return new MeetingPoint("", "");
+        return new MeetingPoint(StringUtils.EMPTY, StringUtils.EMPTY);
     }
 }

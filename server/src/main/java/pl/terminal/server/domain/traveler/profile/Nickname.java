@@ -1,5 +1,7 @@
 package pl.terminal.server.domain.traveler.profile;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Nickname {
 
 	private String nickname;
@@ -11,7 +13,7 @@ public class Nickname {
 
 	public static Nickname empty() {
 
-		return new Nickname("");
+		return new Nickname(StringUtils.EMPTY);
 	}
 
 	public String getInternal() {
