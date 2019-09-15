@@ -15,5 +15,5 @@ public class Airport {
     private String name;
     private String code;
     private Coordinates coordinates;
-    private MeetingPoint meetingPlace;
+    private MeetingPoint meetingPoint;
 }

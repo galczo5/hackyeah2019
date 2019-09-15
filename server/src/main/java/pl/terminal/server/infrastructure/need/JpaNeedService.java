@@ -86,7 +86,7 @@ public class JpaNeedService implements NeedService {
 
         return MatchAcceptResult.builder()
                 .id(new MatchId(persistedAcceptEvent.getId()))
-                .meetingPointName(airport.getMeetingPlace().getName())
+                .meetingPoint(airport.getMeetingPoint())
                 .status(persistedAcceptEvent.getNeedMatchStatus())
                 .build();
     }

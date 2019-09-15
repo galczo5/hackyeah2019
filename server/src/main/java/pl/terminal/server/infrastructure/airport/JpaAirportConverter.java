@@ -18,7 +18,7 @@ public class JpaAirportConverter implements Converter<JpaAirport, Airport> {
                         .latitude(jpaAirport.getLatitude())
                         .longitude(jpaAirport.getLongitude())
                         .build())
-                .meetingPlace(convertMeetingPoint(jpaAirport.getMeetingPoint()))
+                .meetingPoint(convertMeetingPoint(jpaAirport.getMeetingPoint()))
                 .build();
     }
 
@@ -29,6 +29,7 @@ public class JpaAirportConverter implements Converter<JpaAirport, Airport> {
 
         return MeetingPoint.builder()
                 .name(meetingPoint.getName())
+                .description(meetingPoint.getDescription())
                 .build();
     }
 }

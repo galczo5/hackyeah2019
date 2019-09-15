@@ -14,6 +14,8 @@ public class TravelerProfile {
 
 	private Languages languages;
 
+	private Avatar avatar;
+
 	public TravelerProfile(TravelerId travelerId,
 			Nickname nickname,
 			Nationality nationality,
