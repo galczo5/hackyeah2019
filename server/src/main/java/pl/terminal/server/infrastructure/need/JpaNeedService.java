@@ -1,5 +1,10 @@
 package pl.terminal.server.infrastructure.need;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.match.MatchRemoveRequest;
 import pl.terminal.server.application.match.MatchRemoveResponse;
@@ -8,12 +13,14 @@ import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.match.password.MatchPasswordGenerator;
 import pl.terminal.server.domain.match.password.MatchPasswordRequest;
-import pl.terminal.server.domain.need.*;
+import pl.terminal.server.domain.need.MatchAcceptResult;
+import pl.terminal.server.domain.need.NeedMatchStatus;
+import pl.terminal.server.domain.need.NeedRequest;
+import pl.terminal.server.domain.need.NeedRequestId;
+import pl.terminal.server.domain.need.RegisterNeedRequest;
+import pl.terminal.server.domain.need.TimeAvailability;
 import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.infrastructure.airport.AirportsService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class JpaNeedService implements NeedService {
@@ -98,7 +105,12 @@ public class JpaNeedService implements NeedService {
         return new MatchRemoveResponse();
     }
 
-    @Override
+	@Override
+	public Set<NeedRequest> findNeedRequestsByTraveler(TravelerId travelerId) {
+		return jpaNeedRepository.findAllByTravelerId(travelerId.getId()).stream().map(this::toNeedRequest).collect(Collectors.toSet());
+	}
+
+	@Override
     public MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest) {
         JpaMatchNeedEvent match = jpaAcceptNeedEventRepository.findById(acceptMatchRequest.getMatch()).orElseThrow(IllegalArgumentException::new);
 
@@ -112,8 +124,22 @@ public class JpaNeedService implements NeedService {
         );
     }
 
+	@Override
+	public List<NeedRequest> findConfirmedMatchedNeeds(TravelerId travelerId) {
+		return StreamSupport.stream(jpaAcceptNeedEventRepository.findAll().spliterator(), false)
+				.filter(match ->
+						jpaNeedRepository.findById(match.getNeedRequestId()).map(need -> need.getTravelerId().equals(travelerId.getId())).orElse(false)
+				)
+				.filter(event -> event.getNeedMatchStatus() == NeedMatchStatus.CONFIRMED)
+				.map(JpaMatchNeedEvent::getMatchNeedRequestId)
+				.map(jpaNeedRepository::findById)
+				.filter(Optional::isPresent)
+				.map(Optional::get)
+				.map(this::toNeedRequest)
+				.collect(Collectors.toList());
+	}
 
-    private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
+	private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
         return NeedRequest.builder()
                 .needRequestId(new NeedRequestId(jpaNeedEvent.getId()))
                 .airportId(new AirportId(jpaNeedEvent.getAirportId()))

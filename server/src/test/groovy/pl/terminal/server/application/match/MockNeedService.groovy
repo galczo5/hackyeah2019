@@ -2,10 +2,12 @@ package pl.terminal.server.application.match
 
 import pl.terminal.server.application.need.NeedService
 import pl.terminal.server.domain.airport.AirportId
+import pl.terminal.server.domain.match.password.MatchPasswordRequest
 import pl.terminal.server.domain.need.MatchAcceptResult
 import pl.terminal.server.domain.need.NeedRequest
 import pl.terminal.server.domain.need.NeedRequestId
 import pl.terminal.server.domain.need.RegisterNeedRequest
+import pl.terminal.server.domain.traveler.TravelerId
 
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -51,6 +53,21 @@ class MockNeedService implements NeedService {
 
 	@Override
 	MatchRemoveResponse removeAcceptedMatch(MatchRemoveRequest matchRemoveRequest) {
+		return null
+	}
+
+	@Override
+	Set<NeedRequest> findNeedRequestsByTraveler(TravelerId travelerId) {
+		return null
+	}
+
+	@Override
+	MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest) {
+		return null
+	}
+
+	@Override
+	List<NeedRequest> findConfirmedMatchedNeeds(TravelerId travelerId) {
 		return null
 	}
 }

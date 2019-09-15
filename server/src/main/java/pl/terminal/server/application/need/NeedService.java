@@ -1,5 +1,7 @@
 package pl.terminal.server.application.need;
 
+import java.util.List;
+import java.util.Set;
 import pl.terminal.server.application.match.MatchRemoveRequest;
 import pl.terminal.server.application.match.MatchRemoveResponse;
 import pl.terminal.server.domain.airport.AirportId;
@@ -8,8 +10,7 @@ import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequest;
 import pl.terminal.server.domain.need.NeedRequestId;
 import pl.terminal.server.domain.need.RegisterNeedRequest;
-
-import java.util.List;
+import pl.terminal.server.domain.traveler.TravelerId;
 
 public interface NeedService {
 
@@ -23,5 +24,9 @@ public interface NeedService {
 
     MatchRemoveResponse removeAcceptedMatch(MatchRemoveRequest matchRemoveRequest);
 
+	Set<NeedRequest> findNeedRequestsByTraveler(TravelerId travelerId);
+
 	MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest);
+
+	List<NeedRequest> findConfirmedMatchedNeeds(TravelerId travelerId);
 }
