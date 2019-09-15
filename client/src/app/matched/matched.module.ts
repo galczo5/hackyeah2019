@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { MatchedComponent } from './matched.component';
 import { ProfileModule } from '../shared/profile/profile.module';
+import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
 
 
 const routes = [{
@@ -17,7 +18,8 @@ const routes = [{
     CommonModule,
     MaterialModule,
     ProfileModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ColoredButtonModule
   ],
   declarations: [
     MatchedComponent

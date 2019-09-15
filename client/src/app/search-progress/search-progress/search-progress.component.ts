@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatchedService } from '../matched.service';
+import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
-import { map, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { delay, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
+
+import { MatchedService } from '../matched.service';
 import { MatchedStore } from '../../matched/matched.store';
 import { Traveler } from '../../traveler/traveler';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-progress',
@@ -37,6 +38,7 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
           }
 
         }),
+        delay(3000),
         takeUntil(this.destroy$)
       )
       .subscribe((travelers: Array<Traveler>) => {

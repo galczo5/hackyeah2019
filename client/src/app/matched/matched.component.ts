@@ -10,7 +10,7 @@ import { MatchedStore } from './matched.store';
 })
 export class MatchedComponent implements OnInit {
 
-  matched: UserInfo;
+  matched: UserInfo = new Traveler(6, 'Roman Borsuk', '', 'Polish guy', ['-']);
 
   constructor(private matchedStore: MatchedStore) {
   }
