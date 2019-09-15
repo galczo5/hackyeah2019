@@ -145,15 +145,15 @@
   <br>
 
   <p>
-    Meet yourself at XYZ Place!
+    Meet yourself at {{meetingPoint.name}} Place!
   </p>
 
   <p>
-    It's next to Gate 24.
+    {{meetingPoint.description}}
   </p>
 
   <div class="container">
-    <colored-button>
+    <colored-button (click)="go()">
       GO
     </colored-button>
   </div>
