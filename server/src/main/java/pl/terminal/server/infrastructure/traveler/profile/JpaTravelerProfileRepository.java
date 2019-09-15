@@ -1,25 +1,32 @@
 package pl.terminal.server.infrastructure.traveler.profile;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.domain.traveler.TravelerId;
+import pl.terminal.server.domain.traveler.profile.Avatar;
 import pl.terminal.server.domain.traveler.profile.Nickname;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.TravelerProfileRepository;
 import pl.terminal.server.domain.traveler.profile.languages.Languages;
+import pl.terminal.server.infrastructure.traveler.avatar.JpaAvatar;
+import pl.terminal.server.infrastructure.traveler.avatar.JpaAvatarCrudRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class JpaTravelerProfileRepository implements TravelerProfileRepository {
 
 	private final JpaTravelerProfileCrudRepository jpaRepository;
 
+	private final JpaAvatarCrudRepository jpaAvatarCrudRepository;
+
 	@Autowired
-	public JpaTravelerProfileRepository(JpaTravelerProfileCrudRepository jpaRepository) {
+	public JpaTravelerProfileRepository(JpaTravelerProfileCrudRepository jpaRepository, JpaAvatarCrudRepository jpaAvatarCrudRepository) {
 		this.jpaRepository = jpaRepository;
+		this.jpaAvatarCrudRepository = jpaAvatarCrudRepository;
 	}
 
 	@Override
@@ -40,7 +47,8 @@ public class JpaTravelerProfileRepository implements TravelerProfileRepository {
 				new TravelerId(jpaTravelerProfile.getTravelerId()),
 				new Nickname(jpaTravelerProfile.getNickname()),
 				jpaTravelerProfile.getNationality(),
-				new Languages(jpaTravelerProfile.getLanguages())
+				new Languages(jpaTravelerProfile.getLanguages()),
+				mapJpaAvatar(jpaAvatarCrudRepository.findByNationality(jpaTravelerProfile.getNationality()))
 		);
 	}
 
@@ -52,5 +60,9 @@ public class JpaTravelerProfileRepository implements TravelerProfileRepository {
 				profile.getNationality(),
 				profile.getLanguages().getAsSet()
 		));
+	}
+
+	private Avatar mapJpaAvatar(JpaAvatar avatar) {
+		return new Avatar(avatar.getAvatar());
 	}
 }

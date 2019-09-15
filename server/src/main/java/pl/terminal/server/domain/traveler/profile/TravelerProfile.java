@@ -19,11 +19,13 @@ public class TravelerProfile {
 	public TravelerProfile(TravelerId travelerId,
 			Nickname nickname,
 			Nationality nationality,
-			Languages languages) {
+			Languages languages,
+		    Avatar avatar) {
 		this.travelerId = travelerId;
 		this.nickname = nickname;
 		this.nationality = nationality;
 		this.languages = languages;
+		this.avatar = avatar;
 	}
 
 	private TravelerProfile(TravelerId travelerId) {
@@ -31,6 +33,7 @@ public class TravelerProfile {
 		this.nickname = Nickname.empty();
 		this.nationality = null;
 		this.languages = Languages.empty(travelerId);
+		this.avatar = Avatar.empty();
 	}
 
 	public static TravelerProfile empty(TravelerId travelerId) {
@@ -57,6 +60,6 @@ public class TravelerProfile {
 		this.nickname = request.getNickname();
 		this.nationality = request.getNationality();
 		this.languages = request.getLanguages();
-
+		this.avatar = request.getAvatar();
 	}
 }
