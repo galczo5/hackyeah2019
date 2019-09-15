@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActiveTravelerStore } from '../active.traveler.store';
 import { Traveler } from '../traveler';
+import {LoginService} from "../../login/login.service";
 
 @Component({
   templateUrl: './traveler-profile.component.html',
@@ -11,10 +12,22 @@ export class TravelerProfileComponent implements OnInit {
 
   traveler: Traveler;
 
-  constructor(private activeTravelerStore: ActiveTravelerStore) {
+  airports: Array<string> = [
+    'WAW',
+    'WMI',
+    'LAX',
+    'LON'
+  ];
+
+  constructor(private activeTravelerStore: ActiveTravelerStore,
+              private loginService: LoginService) {
+
   }
 
   ngOnInit() {
+
+    this.loginService.selectCurrentUser();
+
     this.activeTravelerStore
         .select()
         .subscribe((traveler: Traveler) => {

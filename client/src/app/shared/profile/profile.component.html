@@ -1,10 +1,9 @@
-<div class="profile-avatar"
-     [ngClass]="{'top-bar': topBar}">
+<div class="profile-avatar">
 
   <div class="profile-container-image">
 
-    <div class="profile-image">
-
+    <div class="profile-image" *ngIf="userInfo && userInfo.avatar">
+      <app-avatar-component [url]="userInfo.avatar" [size]="150"></app-avatar-component>
     </div>
 
   </div>
@@ -20,10 +19,7 @@
   <h2>
     {{userInfo.nationality}}
   </h2>
-
-  <p>
-    <span *ngFor="let lang of userInfo.languages; last as last">
-        {{lang}} <span *ngIf="!last">*</span>
-    </span>
-  </p>
+  <h3>
+      {{ getLanguages() }}
+  </h3>
 </div>

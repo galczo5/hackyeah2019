@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProfileComponent } from './profile.component';
+import {AvatarModuleModule} from "../../avatar-module/avatar-module.module";
 
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AvatarModuleModule
   ],
   declarations: [
     ProfileComponent

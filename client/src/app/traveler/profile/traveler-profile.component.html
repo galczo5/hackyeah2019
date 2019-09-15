@@ -1,10 +1,10 @@
-<app-profile [userInfo]="traveler" [topBar]="true">
+<app-profile *ngIf="traveler" [userInfo]="traveler" [topBar]="true">
 </app-profile>
 
 <mat-tab-group>
   <mat-tab label="Airports">
     <div class="mt-3">
-      <app-traveler-airports></app-traveler-airports>
+      <app-traveler-airports [airports]="airports"></app-traveler-airports>
     </div>
   </mat-tab>
   <mat-tab label="Foreigners">
