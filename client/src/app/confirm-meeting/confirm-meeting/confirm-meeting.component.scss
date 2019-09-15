@@ -3,6 +3,22 @@
   grid-template-columns: 1fr;
   grid-template-rows: 200px 1fr;
   height: 100%;
+
+  .grid.two-cols {
+    grid-template-rows: 1fr 1fr;
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    h2 + h3 {
+      margin-top: 0;
+    }
+
+    .align-center {
+      flex-direction: column;
+    }
+  }
 }
 
 .confirm-meeting-header {
@@ -13,23 +29,5 @@
 
   h1 {
     margin-bottom: 0;
-  }
-}
-
-.left-side {
-  > div:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-    padding-top: 100px;
-  }
-
-}
-
-.right-side {
-  > div {
-    display: flex;
-    flex-direction: column;
-    flex-flow: column-reverse;
-    padding-bottom: 100px;
   }
 }
