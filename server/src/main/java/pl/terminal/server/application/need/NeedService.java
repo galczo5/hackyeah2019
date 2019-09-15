@@ -3,6 +3,7 @@ package pl.terminal.server.application.need;
 import pl.terminal.server.application.match.MatchRemoveRequest;
 import pl.terminal.server.application.match.MatchRemoveResponse;
 import pl.terminal.server.domain.airport.AirportId;
+import pl.terminal.server.domain.match.password.MatchPasswordRequest;
 import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequest;
 import pl.terminal.server.domain.need.NeedRequestId;
@@ -21,4 +22,6 @@ public interface NeedService {
 	MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId);
 
     MatchRemoveResponse removeAcceptedMatch(MatchRemoveRequest matchRemoveRequest);
+
+	MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.terminal.server.application.need.NeedService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.match.Match;
+import pl.terminal.server.domain.match.password.MatchPasswordRequest;
 import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.profile.TravelerProfile;
 import pl.terminal.server.domain.traveler.profile.languages.Languages;
@@ -120,5 +121,9 @@ public class MatchingService {
 
 	public MatchRemoveResponse removeMatch(MatchId id) {
 		return needService.removeAcceptedMatch(new MatchRemoveRequest(id) );
+	}
+
+	public MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest) {
+		return needService.confirmMatch(acceptMatchRequest);
 	}
 }

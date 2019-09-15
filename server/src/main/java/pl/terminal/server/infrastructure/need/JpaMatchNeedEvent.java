@@ -1,9 +1,6 @@
 package pl.terminal.server.infrastructure.need;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pl.terminal.server.domain.need.NeedMatchStatus;
 
 import javax.persistence.*;
@@ -27,5 +24,7 @@ public class JpaMatchNeedEvent {
 
     private String matchPassword;
 
+    @Setter
     private NeedMatchStatus needMatchStatus;
+
 }

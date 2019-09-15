@@ -98,6 +98,20 @@ public class JpaNeedService implements NeedService {
         return new MatchRemoveResponse();
     }
 
+    @Override
+    public MatchAcceptResult confirmMatch(MatchPasswordRequest acceptMatchRequest) {
+        JpaMatchNeedEvent match = jpaAcceptNeedEventRepository.findById(acceptMatchRequest.getMatch()).orElseThrow(IllegalArgumentException::new);
+
+        match.setNeedMatchStatus(NeedMatchStatus.CONFIRMED);
+        jpaAcceptNeedEventRepository.save(match);
+
+        return new MatchAcceptResult(
+                new MatchId(match.getId()),
+                NeedMatchStatus.CONFIRMED,
+                null
+        );
+    }
+
 
     private NeedRequest toNeedRequest(JpaNeedEvent jpaNeedEvent) {
         return NeedRequest.builder()
