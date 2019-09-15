@@ -4,6 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActiveTravelerStore } from '../../traveler/active.traveler.store';
 import { Traveler } from '../../traveler/traveler';
 import { MatchedTravelerStore } from '../../matched/matched-traveler.store';
+import { ConfirmMeetingService } from './confirm-meeting.service';
 
 @Component({
   selector: 'app-confirm-meeting',
@@ -17,6 +18,7 @@ export class ConfirmMeetingComponent implements OnInit {
 
   constructor(private readonly matchedStore: MatchedTravelerStore,
               private readonly travelerStore: ActiveTravelerStore,
+              private readonly confirmMeetingService: ConfirmMeetingService,
               private readonly domSanitizer: DomSanitizer) {
   }
 
@@ -42,7 +44,19 @@ export class ConfirmMeetingComponent implements OnInit {
     return name.split(' ')[0];
   }
 
-  confirm() {
+  confirm(form: any) {
+    console.log(form.value);
 
+    if (!form) {
+      return;
+    }
+
+    this.confirmMeetingService
+        .confirm(form.value.password)
+        .subscribe(() => {
+
+          // przejście na ekran klepnięcia
+
+        });
   }
 }

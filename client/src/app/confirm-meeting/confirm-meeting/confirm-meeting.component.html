@@ -1,3 +1,5 @@
+<form #f="ngForm" (ngSubmit)="confirm(f)">
+
 <div class="confirm-meeting-grid">
   <div class="confirm-meeting-header">
     <h1>Confirm meeting</h1>
@@ -12,9 +14,11 @@
       <h3>Yours word</h3>
     </div>
     <div *ngIf="matchedTraveler" class="align-center">
-      <mat-form-field>
-        <input matInput>
-      </mat-form-field>
+
+<!--      <mat-form-field>-->
+        <input ngModel #password="ngModel" name="password">
+<!--      </mat-form-field>-->
+
       <h3>{{ getFirstName(matchedTraveler.name) }}'s word</h3>
     </div>
     <div *ngIf="matchedTraveler" class="align-center">
@@ -22,7 +26,8 @@
     </div>
   </div>
 
-  <colored-button (click)="confirm()">
+  <colored-button>
     CONFIRM
   </colored-button>
 </div>
+</form>
