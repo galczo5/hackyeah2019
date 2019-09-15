@@ -8,13 +8,13 @@ public class CountryAchievementDTO {
 
 	public int score;
 
-	public Avatar avatar;
+	public String avatar;
 
 	public Nationality nationality;
 
 	public CountryAchievementDTO(int score, Avatar avatar, Nationality nationality) {
 		this.score = score;
-		this.avatar = avatar;
+		this.avatar = avatar.getAvatar();
 		this.nationality = nationality;
 	}
 }
