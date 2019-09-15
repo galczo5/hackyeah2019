@@ -34,18 +34,24 @@ export class LoginService {
       password
     };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+	  Authorization: 'Basic ' + btoa(username + ':' + password)
     });
+	
+	headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password))
 
+	
+                   const token = 'Basic ' + btoa(username + ':' + password);
+
+                   localStorage.setItem('JSESSIONID', token);
+				   
+	
     return this.httpClient
                .post(this.loginUrl, request, { headers, withCredentials: true })
                .pipe(
                  map((jid: any) => {
 
-                   const token = 'Basic ' + btoa(username + ':' + password);
-
-                   localStorage.setItem('JSESSIONID', token);
                    return null;
                  })
                );
