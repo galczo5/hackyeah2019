@@ -1,11 +1,11 @@
 package pl.terminal.server.domain.need;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
+@Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class NeedRequestId {
     private Long id;
