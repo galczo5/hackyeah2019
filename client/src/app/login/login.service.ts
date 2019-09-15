@@ -42,7 +42,10 @@ export class LoginService {
                .post(this.loginUrl, request, { headers, withCredentials: true })
                .pipe(
                  map((jid: any) => {
-                   localStorage.setItem('JSESSIONID', jid.id)
+
+                   const token = 'Basic ' + btoa(username + ':' + password);
+
+                   localStorage.setItem('JSESSIONID', token);
                    return null;
                  })
                );

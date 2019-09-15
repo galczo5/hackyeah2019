@@ -5,8 +5,8 @@ import { PlaceStore } from './place.store';
 
 
 @Component({
-  templateUrl: './matched.component.html',
-  styleUrls: ['./matched.component.scss']
+  templateUrl: './place-confirm.component.html',
+  styleUrls: ['./place-confirm.component.scss']
 })
 export class PlaceConfirmComponent implements OnInit {
 

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule', data: { num: 6 } },
   { path: 'not-found', loadChildren: './match-not-found/match-not-found.module#MatchNotFoundModule', data: { num: 7 } },
   { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 8 } },
+  { path: 'place-confirm', loadChildren: './place-confirm/place-confirm#PlaceConfirm', data: { num: 9 } },
   { path: '**', redirectTo: 'location', pathMatch: 'full' }
 ];
 

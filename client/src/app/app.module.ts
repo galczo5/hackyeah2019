@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_BOOTSTRAP_LISTENER, APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,26 +12,10 @@ import { NavigationModule } from './shared/navigation/navigation.module';
 import { Router } from '@angular/router';
 
 import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest, HttpClientModule, HTTP_INTERCEPTORS
+  HttpClientModule, HTTP_INTERCEPTORS
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { LoginInterceptor } from './login/login.interceptor';
 
-export class AddHeaderInterceptor implements HttpInterceptor {
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    const auth = localStorage.getItem('JSESSIONID') || '';
-
-    // Clone the request to add the new header
-    const clonedRequest = req.clone({ headers: req.headers.set('Authorization', auth) });
-
-    // Pass the cloned request instead of the original request to the next handle
-    return next.handle(clonedRequest);
-  }
-}
 
 
 @NgModule({
@@ -52,7 +36,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     ActiveTravelerStore,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AddHeaderInterceptor,
+      useClass: LoginInterceptor,
       multi: true
     },
     {
