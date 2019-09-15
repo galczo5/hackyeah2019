@@ -32,3 +32,10 @@
     margin-bottom: 0;
   }
 }
+
+.confirmation-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 76px;
+  height: 100%;
+}

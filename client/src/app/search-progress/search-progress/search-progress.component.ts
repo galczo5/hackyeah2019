@@ -45,6 +45,8 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
       )
       .subscribe((matchedDtos: Array<MatchedDto>) => {
 
+        console.log(matchedDtos)
+
         this.matchedRequestIdStore.set(matchedDtos[0].matchRequestId);
 
         this.matchedStore.set(matchedDtos[0].traveler);
