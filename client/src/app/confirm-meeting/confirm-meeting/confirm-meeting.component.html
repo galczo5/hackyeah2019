@@ -1,35 +1,38 @@
-<form #f="ngForm" (ngSubmit)="confirm(f)">
+<div class="confirmation-grid">
+  <form #f="ngForm" (ngSubmit)="confirm(f)">
 
-  <div class="confirm-meeting-grid">
-    <div class="confirm-meeting-header">
-      <h1>Confirm meeting</h1>
-      <h3>Exchange words to confirm your meeting</h3>
+    <div class="confirm-meeting-grid">
+      <div class="confirm-meeting-header">
+        <h1>Confirm meeting</h1>
+        <h3>Exchange words to confirm your meeting</h3>
+      </div>
+      <div class="grid two-cols" style="row-gap: 20px;">
+        <div *ngIf="activeTraveler" class="align-center">
+          <app-avatar-component [url]="activeTraveler.avatar" [size]="150" [background]="'#E2E3F9'"></app-avatar-component>
+        </div>
+        <div *ngIf="activeTraveler" class="align-center" style="align-items: flex-start">
+          <h2>Marco</h2>
+          <h3>Yours word</h3>
+        </div>
+        <div *ngIf="matchedTraveler" class="align-center" style="align-items: flex-end">
+
+          <mat-form-field style="width: 150px;">
+            <input matInput ngModel #password="ngModel" name="password">
+          </mat-form-field>
+
+          <h3 class="mt-0">{{ getFirstName(matchedTraveler.name) }}'s word</h3>
+        </div>
+        <div *ngIf="matchedTraveler" class="align-center">
+          <app-avatar-component [url]="matchedTraveler.avatar" [size]="150" [background]="'#E2E3F9'"></app-avatar-component>
+        </div>
+      </div>
     </div>
-    <div class="grid two-cols">
-      <div *ngIf="activeTraveler" class="align-center">
-        <img [src]="sanitizeAvatar(activeTraveler.avatar)" alt="">
-      </div>
-      <div *ngIf="activeTraveler" class="align-center">
-        <h2>Marco</h2>
-        <h3>Yours word</h3>
-      </div>
-      <div *ngIf="matchedTraveler" class="align-center">
-
-        <mat-form-field>
-          <input matInput ngModel #password="ngModel" name="password">
-        </mat-form-field>
-
-        <h3>{{ getFirstName(matchedTraveler.name) }}'s word</h3>
-      </div>
-      <div *ngIf="matchedTraveler" class="align-center">
-        <img [src]="sanitizeAvatar(matchedTraveler.avatar)" alt="">
-      </div>
-    </div>
-
+  </form>
+  <div class="next-button-wrapper">
     <colored-button class="mt-3">
       <button mat-flat-button color="primary">
         CONFIRM
       </button>
     </colored-button>
   </div>
-</form>
+</div>

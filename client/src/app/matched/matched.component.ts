@@ -15,7 +15,7 @@ import { MatchedAcceptResult } from './matched-accept-result';
 })
 export class MatchedComponent implements OnInit {
 
-  matched: UserInfo = new Traveler(6, 'Roman Borsuk', '', 'Polish guy', ['-']);
+  matched: UserInfo;
 
   constructor(private matchedStore: MatchedTravelerStore,
               private router: Router,
@@ -28,6 +28,7 @@ export class MatchedComponent implements OnInit {
     this.matchedStore
         .select()
         .subscribe((traveler: Traveler) => {
+          console.log(traveler)
           this.matched = traveler;
         });
   }

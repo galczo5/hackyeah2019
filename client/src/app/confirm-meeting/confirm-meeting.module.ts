@@ -7,6 +7,7 @@ import { ConfirmMeetingComponent } from './confirm-meeting/confirm-meeting.compo
 import { MaterialModule } from '../material/material.module';
 import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
 import { ConfirmMeetingService } from './confirm-meeting/confirm-meeting.service';
+import {AvatarModuleModule} from "../avatar-module/avatar-module.module";
 
 
 const routes = [{
@@ -21,7 +22,8 @@ const routes = [{
     RouterModule.forChild(routes),
     MaterialModule,
     FormsModule,
-    ColoredButtonModule
+    ColoredButtonModule,
+    AvatarModuleModule
   ],
   providers: [
     ConfirmMeetingService

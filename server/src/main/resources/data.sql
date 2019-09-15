@@ -21,11 +21,11 @@ insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(4, 'AAA', 'Anaa
 insert into AIRPORTS(ID, CODE, NAME, LATITUDE, LONGITUDE) VALUES(5, 'AAB', 'Arrabury Airport', -26.7, 141.05);
 
 insert into USER(ID, USERNAME, PASSWORD)
-VALUES (1, 'lukasz', '$2a$10$w66at8AGs40XQkfMIAbbFem5M5iEjEkvIq/YRLZrZc4YuRjWoAR5C');
+VALUES (1, 'a.kowalska', '$2a$10$.v6DEln1gIP6aDUMPB5.tuFtnMRXrByEJ8obVhGsi5K1IzAJYwfxu');
 insert into USER(ID, USERNAME, PASSWORD)
-VALUES (2, 'marta', '$2a$10$w66at8AGs40XQkfMIAbbFem5M5iEjEkvIq/YRLZrZc4YuRjWoAR5C');
+VALUES (2, 'p.esperanza', '$2a$10$.v6DEln1gIP6aDUMPB5.tuFtnMRXrByEJ8obVhGsi5K1IzAJYwfxu');
 insert into USER(ID, USERNAME, PASSWORD)
-VALUES (3, 'ola', '$2a$10$w66at8AGs40XQkfMIAbbFem5M5iEjEkvIq/YRLZrZc4YuRjWoAR5C');
+VALUES (3, 'h.spencer', '$2a$10$.v6DEln1gIP6aDUMPB5.tuFtnMRXrByEJ8obVhGsi5K1IzAJYwfxu');
 
 insert into JPA_TRAVELER_PROFILE(TRAVELER_ID, NATIONALITY, NICKNAME)
 VALUES (1, 'POLAND', 'Anna Kowalska');

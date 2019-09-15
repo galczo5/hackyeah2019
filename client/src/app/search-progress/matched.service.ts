@@ -43,7 +43,7 @@ export class MatchedService {
                      const traveler = new Traveler(
                        rawTraveler.profile.travelerId,
                        rawTraveler.profile.nickname,
-                       '',
+                       rawTraveler.profile.avatar,
                        rawTraveler.profile.nationality,
                        rawTraveler.profile.languages
                      );
