@@ -34,7 +34,7 @@ export class MatchedService {
                  switchMap((requestId: NeedRequestId) => {
 
                    return this.httpClient
-                              .get(this.url + '/' + requestId.id)
+                              .get(this.url + '/' + requestId.id);
                  }),
                  map((rawMatched: Array<any>) => {
 

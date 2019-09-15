@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
-import { delay, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
+import { delay, filter, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
 
 import { MatchedDto, MatchedService } from '../matched.service';
 import { Traveler } from '../../traveler/traveler';
@@ -41,11 +41,12 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
 
         }),
         delay(0),
+        filter((matchedDtos: Array<MatchedDto>) => {
+          return matchedDtos.length > 0;
+        }),
         takeUntil(this.destroy$)
       )
       .subscribe((matchedDtos: Array<MatchedDto>) => {
-
-        console.log(matchedDtos)
 
         this.matchedRequestIdStore.set(matchedDtos[0].matchRequestId);
 
