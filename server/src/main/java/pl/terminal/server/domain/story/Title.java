@@ -8,6 +8,6 @@ public class Title {
 	private String title;
 
 	public String asString() {
-		return null;
+		return title;
 	}
 }

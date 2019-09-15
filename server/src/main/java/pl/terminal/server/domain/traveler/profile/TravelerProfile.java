@@ -56,6 +56,10 @@ public class TravelerProfile {
 		return languages;
 	}
 
+	public Avatar getAvatar() {
+		return avatar;
+	}
+
 	public void updateProfile(UpdateProfileRequest request) {
 		this.nickname = request.getNickname();
 		this.nationality = request.getNationality();

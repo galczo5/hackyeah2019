@@ -50,3 +50,17 @@ VALUES (2, 'EAT');
 insert into EVENT_NEEDS(NEED_EVENT_ID, NEED)
 VALUES (2, 'CHAT');
 
+insert into JPA_STORY(ID, TITLE, CONTENT, AIRPORT_ID, AUTHOR_ID)
+VALUES (1, 'Great story about Warsaw', 'Go to help desk and ask for Lukasz, he is awesome guy to talk with', 1, 1);
+--
+-- 	private Long id;
+--
+-- private String title;
+--
+-- private String content;
+--
+-- private Long airportId;
+--
+-- private Long authorId;
+
+

@@ -17,10 +17,13 @@ public class TravelerProfileDTO {
 
 	public Set<Language> languages;
 
+	public String avatar;
+
 	public TravelerProfileDTO(TravelerProfile profile) {
 		this.travelerId = profile.getTravelerId().getId();
 		this.nickname = profile.getNickname().getInternal();
 		this.nationality = profile.getNationality();
 		this.languages = profile.getLanguages().getAsSet();
+		this.avatar = profile.getAvatar().getAvatar();
 	}
 }

@@ -17,7 +17,7 @@ import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.infrastructure.security.SecurityService;
 
 @RestController
-@RequestMapping("stories")
+@RequestMapping("api/stories")
 public class StoryEndpoint {
 
 	private final SecurityService securityService;
