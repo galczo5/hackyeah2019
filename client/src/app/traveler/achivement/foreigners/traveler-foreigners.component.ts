@@ -10,6 +10,7 @@ import { Achievement } from '../achivement';
         <app-foreigner-achievement
                 *ngFor="let fore of foreigners"
                 class="mr-1 mb-1"
+                [image]="fore.image"
                 [size]="75"
                 text="PL">
         </app-foreigner-achievement>
@@ -32,7 +33,6 @@ export class TravelerForeignersComponent implements OnInit {
         .select()
         .subscribe((foreigners: Array<Achievement>) => {
           this.foreigners = foreigners;
-          console.log(foreigners)
           this.cd.detectChanges();
         });
   }

@@ -15,6 +15,7 @@ import { Achievement } from '../achivement';
 		  align-items: center;
 		  justify-content: center;
 		  font-weight: 400;
+		  margin-bottom: 10px;
 	  }
 
 	  .ticket-bg {

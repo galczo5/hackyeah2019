@@ -7,10 +7,9 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   template: `
 	  <div class="achievement-wrapper"
 		   [style.width]="size + 'px'"
-		   [style.height]="size + 'px'"
-		   [style.background-image]="urlSanitized()">
-        <span *ngIf="!image">
-            {{text}}
+		   [style.height]="size + 'px'">
+        <span *ngIf="image"
+			  [style.background-image]="urlSanitized()">
         </span>
 	  </div>
   `,
@@ -24,6 +23,14 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 		  color: #C4C1C1;
 		  font-weight: 500;
 		  font-size: 16px;
+	  }
+
+	  .achievement-wrapper span {
+		  flex-grow: 1;
+		  background-repeat: no-repeat;
+		  display: block;
+		  height: 100%;
+		  width: 100%;
 	  }
   `]
 })
@@ -42,6 +49,8 @@ export class ForeignerAchievementComponent {
   }
 
   urlSanitized(): SafeUrl {
+    console.log(this.image);
+
     return this.image ? this.domSanitizer.bypassSecurityTrustStyle(this.getSrc()) : 'none';
   }
 
