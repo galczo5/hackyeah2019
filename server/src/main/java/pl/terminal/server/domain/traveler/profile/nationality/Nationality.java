@@ -6,7 +6,8 @@ public enum Nationality {
 	ITALY,
 	EGYPT,
 	POLAND,
-	MEXICO
+	MEXICO,
+	PORTUGAL
 
 
 }
