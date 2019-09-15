@@ -14,17 +14,23 @@ import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.story.Stories;
 import pl.terminal.server.domain.story.StoryId;
 import pl.terminal.server.domain.traveler.TravelerId;
+import pl.terminal.server.infrastructure.security.SecurityService;
 
 @RestController
 @RequestMapping("stories")
 public class StoryEndpoint {
+
+	private final SecurityService securityService;
 
 	private final StoryService storyService;
 
 	private final TravelerProfileService profileService;
 
 	@Autowired
-	public StoryEndpoint(StoryService storyService, TravelerProfileService profileService) {
+	public StoryEndpoint(SecurityService securityService,
+			StoryService storyService,
+			TravelerProfileService profileService) {
+		this.securityService = securityService;
 		this.storyService = storyService;
 		this.profileService = profileService;
 	}
@@ -40,14 +46,14 @@ public class StoryEndpoint {
 		storyService.addStory(requestDTO.toDomain(new AirportId(airportId)));
 	}
 
-	@PostMapping(value = "like/{storyId}/{travelerId}", produces = "application/json")
-	public void likeStory(@PathVariable Long storyId, @PathVariable Long travelerId) {
-		storyService.likeStory(new StoryId(storyId), new TravelerId(travelerId));
+	@PostMapping(value = "like/{storyId}", produces = "application/json")
+	public void likeStory(@PathVariable Long storyId) {
+		storyService.likeStory(new StoryId(storyId), new TravelerId(securityService.findLoggedInUserId()));
 	}
 
-	@PostMapping(value = "unlike/{storyId}/{travelerId}", produces = "application/json")
-	public void unlikeStory(@PathVariable Long storyId, @PathVariable Long travelerId) {
-		storyService.unlikeStory(new StoryId(storyId), new TravelerId(travelerId));
+	@PostMapping(value = "unlike/{storyId}", produces = "application/json")
+	public void unlikeStory(@PathVariable Long storyId) {
+		storyService.unlikeStory(new StoryId(storyId), new TravelerId(securityService.findLoggedInUserId()));
 	}
 
 }
