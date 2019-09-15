@@ -40,7 +40,7 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
           }
 
         }),
-        delay(3000),
+        delay(0),
         takeUntil(this.destroy$)
       )
       .subscribe((matchedDtos: Array<MatchedDto>) => {

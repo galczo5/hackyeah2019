@@ -7,6 +7,7 @@ import { MatchedTravelerStore } from './matched-traveler.store';
 import { MatchedService } from './matched.service';
 import { PlaceMatchedStore } from '../place-confirm/place-matched.store';
 import { MatchedAcceptResult } from './matched-accept-result';
+import { PostMatchIdStore } from './post-match-id.store';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class MatchedComponent implements OnInit {
   constructor(private matchedStore: MatchedTravelerStore,
               private router: Router,
               private placeMatchedStore: PlaceMatchedStore,
+              private postMatchIdStore: PostMatchIdStore,
               private matchedService: MatchedService) {
   }
 
@@ -28,7 +30,6 @@ export class MatchedComponent implements OnInit {
     this.matchedStore
         .select()
         .subscribe((traveler: Traveler) => {
-          console.log(traveler)
           this.matched = traveler;
         });
   }
@@ -39,6 +40,7 @@ export class MatchedComponent implements OnInit {
         .subscribe((result: MatchedAcceptResult) => {
 
           this.placeMatchedStore.set(result);
+          this.postMatchIdStore.set(result.id);
 
           this.router.navigate(['/place-confirm']);
         });

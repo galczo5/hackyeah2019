@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs/operators';
 
 import { MatchedRequestIdStore } from '../../matched/matched.request-id.store';
 import { NeedRequestId } from '../../check-in/need-request-id';
+import { PostMatchIdStore } from '../../matched/post-match-id.store';
 
 export interface MatchPasswordRequest {
   password: string;
@@ -16,15 +17,15 @@ export class ConfirmMeetingService {
   private readonly url = 'http://localhost:8080/api/needs/match';
 
   constructor(private httpClient: HttpClient,
-              private matchedRequestIdStore: MatchedRequestIdStore) {
+              private postMatchIdStore: PostMatchIdStore) {
   }
 
   confirm(password: string) {
 
-    return this.matchedRequestIdStore
+    return this.postMatchIdStore
                .select()
                .pipe(
-                 switchMap((id: NeedRequestId) => {
+                 switchMap((id: any) => {
 
                    let request = {
                      password,
