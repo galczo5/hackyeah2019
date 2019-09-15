@@ -41,7 +41,6 @@ export class RegisterService {
 
     zip(
       this.selectedActivitiesStore.select(),
-      this.activeTravelerStore.select(),
       this.selectedAirportStore.select(),
       this.waitingTimeStore.select()
     )
@@ -49,9 +48,8 @@ export class RegisterService {
         switchMap((args) => {
 
           const activities = args[0],
-            traveler = args[1],
-            airport = args[2],
-            time = args[3];
+            airport = args[1],
+            time = args[2];
 
           let availableToDate = new Date();
 
@@ -59,8 +57,6 @@ export class RegisterService {
           availableToDate.setMinutes(availableToDate.getMinutes() + time.minutes);
 
           const request: RegisterRequest = {
-
-            traveler: traveler.id,
 
             needs: activities.map(a => a.name.toLocaleUpperCase()),
 
