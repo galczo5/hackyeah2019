@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-select>
+  <mat-select [(value)]="selectedAirport">
     <mat-option *ngFor="let loc of airports"
                 [value]="loc"
                 (click)="selectAirport(loc)">
