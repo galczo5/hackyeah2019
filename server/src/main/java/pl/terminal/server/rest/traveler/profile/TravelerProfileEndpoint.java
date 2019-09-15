@@ -1,7 +1,5 @@
 package pl.terminal.server.rest.traveler.profile;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,23 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.traveler.TravelerId;
-import pl.terminal.server.domain.traveler.profile.TravelerProfile;
+import pl.terminal.server.infrastructure.security.SecurityService;
 
 @RestController
 @RequestMapping("profiles")
 public class TravelerProfileEndpoint {
 
+	private final SecurityService securityService;
+
 	private final TravelerProfileService profileService;
 
 	@Autowired
-	public TravelerProfileEndpoint(TravelerProfileService profileService) {
+	public TravelerProfileEndpoint(SecurityService securityService, TravelerProfileService profileService) {
+		this.securityService = securityService;
 		this.profileService = profileService;
-	}
-
-	@GetMapping(value = "/{travelerId}", produces = "application/json")
-	public TravelerProfileDTO getProfile(@PathVariable Long travelerId) {
-		final TravelerProfile profile = profileService.getProfile(new TravelerId(travelerId));
-		return new TravelerProfileDTO(profile);
 	}
 
 	@PostMapping(value = "/{travelerId}")
@@ -36,9 +31,9 @@ public class TravelerProfileEndpoint {
 	}
 
 	@GetMapping(produces = "application/json")
-	public List<TravelerProfileDTO> getProfiles() {
-		final List<TravelerProfile> profiles = profileService.getAllProfiles();
-		return profiles.stream().map(TravelerProfileDTO::new).collect(Collectors.toList());
+	public TravelerProfileDTO getProfile() {
+		final TravelerId loggedInTraveler = new TravelerId(securityService.findLoggedInUserId());
+		return new TravelerProfileDTO(profileService.getProfile(loggedInTraveler));
 	}
 
 

@@ -20,7 +20,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    this.loginService.loginByTravelerId(f.value.travelerId)
+
+    const username = f.value.username,
+      password = f.value.password;
+
+    this.loginService
+        .login(username, password)
         .subscribe(() => {
           this.router.navigate(['/location']);
         });

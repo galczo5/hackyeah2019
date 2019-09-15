@@ -5,6 +5,11 @@ import { Traveler } from '../traveler/traveler';
 import { ActiveTravelerStore } from '../traveler/active.traveler.store';
 import { map } from 'rxjs/operators';
 
+export interface LoginRequest {
+  username: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,15 +17,21 @@ export class LoginService {
 
   private readonly url = 'http://localhost:8080/profiles/1';
 
-  private readonly loginUrl = 'http://localhost:8080/login/';
+  private readonly loginUrl = 'http://localhost:8080/api/security/login/';
 
   constructor(private httpClient: HttpClient,
               private activeTravelerStore: ActiveTravelerStore) {
   }
 
-  loginByTravelerId(id: string): Observable<void> {
+  login(username: string, password: string): Observable<void> {
+
+    const request: LoginRequest = {
+      username,
+      password
+    };
+
     return this.httpClient
-               .get(this.loginUrl + id)
+               .post(this.loginUrl, request)
                .pipe(
                  map(() => {
                    return null;
