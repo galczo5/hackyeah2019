@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'confirm', loadChildren: './confirm-meeting/confirm-meeting.module#ConfirmMeetingModule', data: { num: 4 } },
   { path: 'explore', loadChildren: './explore/recomendation.module#RecomendationModule', data: { num: 5 } },
   { path: 'profile', loadChildren: './traveler/profile/traveler-profile.module#TravelerProfileModule', data: { num: 6 } },
-  { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 7 } },
+  { path: 'not-found', loadChildren: './match-not-found/match-not-found.module#MatchNotFoundModule', data: { num: 7 } },
+  { path: 'login', loadChildren: './login/login.module#LoginModule', data: { num: 8 } },
   { path: '**', redirectTo: 'location', pathMatch: 'full' }
 ];
 
