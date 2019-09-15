@@ -13,12 +13,16 @@
   </svg>
 
   <mat-form-field>
-    <input name="username" ngModel required #username="ngModel" matInput placeholder="Username">
+    <input name="username" ngModel required #username="ngModel" matInput placeholder="Username" value="lukasz">
   </mat-form-field>
 
   <mat-form-field class="mb-3">
-    <input name="password" type="password" ngModel required #password="ngModel" matInput placeholder="Password">
+    <input name="password" type="password" ngModel required #password="ngModel" matInput placeholder="Password" value="lukaszlukasz">
   </mat-form-field>
 
-  <colored-button class="mt-3">Submit</colored-button>
+  <colored-button class="mt-3">
+    <button mat-flat-button color="primary">
+      Submit
+    </button>
+  </colored-button>
 </form>

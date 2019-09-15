@@ -122,6 +122,10 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  button {
+    transform: translateY(-10px);
+  }
 }
 
 .align-center {
@@ -140,4 +144,8 @@ h3 {
 
 .mat-progress-bar-fill:after {
   background: linear-gradient(90deg, #2f05b0, #cd4470) !important;
+}
+
+.mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+  border-radius: 30px !important;
 }

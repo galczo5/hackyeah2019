@@ -4,12 +4,12 @@
       Welcome to
     </h2>
     <app-airport-list [airports]="locations"></app-airport-list>
-    <h3 class="question-header">
+    <h2 class="question-header">
       What do you want to do?
-    </h3>
+    </h2>
   </div>
 
-  <div class="grid two-cols pt-2" style="margin: 0 50px;">
+  <div class="grid two-cols pt-2 pb-2" style="margin: 0 50px;">
     <app-activity *ngFor="let activity of activities"
                   [name]="activity.name"
                   [active]="activityActive(activity)"

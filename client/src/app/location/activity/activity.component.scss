@@ -16,12 +16,13 @@
   height: 100px;
   background: #E2E3F9;
   padding: 10px;
+  border: 4px solid transparent;
 
   img {
     width: 70%;
   }
 
   &.active {
-    border: 3px solid red;
+    border: 4px solid #1F0471;
   }
 }

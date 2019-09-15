@@ -2,15 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'colored-button',
-  template: `
-
-	  <button mat-raised-button >
-        <ng-content></ng-content>
-	  </button>
-    
+  template: `    
+      <ng-content></ng-content>
   `,
   host: {
-    '[class.colored-button]': 'true'
+    '[class.colored-button]': 'false'
   }
   // styleUrls: [``]
 })
