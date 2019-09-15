@@ -1,32 +1,44 @@
 package pl.terminal.server.rest.match;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pl.terminal.server.application.match.MatchRemoveResponse;
 import pl.terminal.server.application.match.MatchingService;
 import pl.terminal.server.application.traveler.profile.TravelerProfileService;
 import pl.terminal.server.domain.match.Match;
 import pl.terminal.server.domain.need.MatchAcceptResult;
 import pl.terminal.server.domain.need.NeedRequestId;
+import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.infrastructure.need.MatchId;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import pl.terminal.server.infrastructure.security.SecurityService;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/needs")
 public class NeedsEndpoint {
 
+	private final SecurityService securityService;
+
 	private final MatchingService matchingService;
 
 	private final TravelerProfileService profileService;
 
 	@Autowired
-	public NeedsEndpoint(MatchingService matchingService, TravelerProfileService profileService) {
+	public NeedsEndpoint(SecurityService securityService,
+			MatchingService matchingService,
+			TravelerProfileService profileService) {
+		this.securityService = securityService;
 		this.matchingService = matchingService;
 		this.profileService = profileService;
 	}
@@ -41,7 +53,7 @@ public class NeedsEndpoint {
 
 	@PostMapping(value = "register")
 	public NeedRequestId registerNeed(@RequestBody RegisterNeedRequestDTO requestDTO) {
-		return matchingService.registerNeed(requestDTO.toDomain());
+		return matchingService.registerNeed(requestDTO.toDomain(new TravelerId(securityService.findLoggedInUserId())));
 	}
 
 	@PostMapping("match")

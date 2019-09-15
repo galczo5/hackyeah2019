@@ -7,6 +7,9 @@ import { Airport } from '../airport';
 import { SelectedActivitiesStore } from '../selected-activities-store.service';
 import { Activity } from './Activity';
 import { LoginService } from '../../login/login.service';
+import {GeolocationService} from "../../geolocation/geolocation.service";
+import {Location} from "../../geolocation/Location";
+import {SelectedAirportStore} from "../selected-airport.store";
 
 export enum LocationFetchStatus {
   SUCCESS,
@@ -22,7 +25,6 @@ export enum LocationFetchStatus {
 export class SetLocationComponent implements OnInit {
 
   locations: Array<Airport> = [];
-
   fetchStatus: LocationFetchStatus = LocationFetchStatus.IN_PROGRES;
 
   activities: Array<Activity> = [
@@ -36,25 +38,40 @@ export class SetLocationComponent implements OnInit {
 
   constructor(private readonly airportsService: AirportsService,
               private readonly activitiesStore: SelectedActivitiesStore,
+              private readonly selectedAirportStore: SelectedAirportStore,
               private readonly loginService: LoginService,
+              private readonly geolocationService: GeolocationService,
               private readonly router: Router) {
 
   }
 
   ngOnInit() {
-    let subscription: Subscription = this.airportsService
-                                         .getAirports()
-                                         .subscribe(airports => {
-                                           this.locations = airports;
-                                           this.fetchStatus = LocationFetchStatus.SUCCESS;
-                                         });
+    this.airportsService
+      .getAirports()
+      .subscribe(airports => {
+        this.locations = airports;
+      });
 
+    const subscription = this.geolocationService.getLocation()
+      .subscribe((location: Location) => {
+        this.fetchStatus = LocationFetchStatus.SUCCESS;
+        this.setAirport(location);
+      });
 
     timer(5000)
       .subscribe(() => {
         if (this.fetchStatus === LocationFetchStatus.IN_PROGRES) {
           subscription.unsubscribe();
           this.fetchStatus = LocationFetchStatus.FAIL;
+        }
+      });
+  }
+
+  setAirport(location: Location) {
+    this.airportsService.getAriport(location)
+      .subscribe((airports: Array<Airport>) => {
+        if (airports.length !== 0) {
+          this.selectedAirportStore.set(airports[0])
         }
       });
   }

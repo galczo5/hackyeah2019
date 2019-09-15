@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_BOOTSTRAP_LISTENER, APP_INITIALIZER, NgModule} from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { FAKE_LOCATION } from './geolocation/geolocation.service';
 import { MaterialModule } from './material/material.module';
 import { ActiveTravelerStore } from './traveler/active.traveler.store';
 import { NavigationModule } from './shared/navigation/navigation.module';
+import {Router} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,16 @@ import { NavigationModule } from './shared/navigation/navigation.module';
   ],
   providers: [
     { provide: FAKE_LOCATION, useValue: true },
+    {
+      multi: true,
+      provide: APP_BOOTSTRAP_LISTENER,
+      useFactory: (router: Router) => {
+        return () => {
+          router.navigateByUrl('/welcome');
+        }
+      },
+      deps: [Router]
+    },
     ActiveTravelerStore
   ],
   bootstrap: [AppComponent]

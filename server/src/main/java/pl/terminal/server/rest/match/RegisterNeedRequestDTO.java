@@ -1,5 +1,7 @@
 package pl.terminal.server.rest.match;
 
+import java.time.LocalDateTime;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,16 +12,11 @@ import pl.terminal.server.domain.need.RegisterNeedRequest;
 import pl.terminal.server.domain.need.TimeAvailability;
 import pl.terminal.server.domain.traveler.TravelerId;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterNeedRequestDTO {
-
-	private Long traveler;
 
 	private Set<Need> needs;
 
@@ -29,9 +26,9 @@ public class RegisterNeedRequestDTO {
 
 	private LocalDateTime availableTo;
 
-	public RegisterNeedRequest toDomain() {
+	public RegisterNeedRequest toDomain(TravelerId travelerId) {
 		return new RegisterNeedRequest(
-				new TravelerId(traveler),
+				travelerId,
 				needs,
 				new AirportId(airport),
 				new TimeAvailability(availableFrom, availableTo)

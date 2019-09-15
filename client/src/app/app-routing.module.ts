@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'location', pathMatch: 'full' },
+  { path: 'welcome', loadChildren: './app-logo/app-logo.module#AppLogoModule' },
   { path: 'location', loadChildren: './location/location.module#LocationModule', data: { num: 0 } },
   { path: 'check-in', loadChildren: './check-in/check-in.module#CheckInModule', data: { num: 1 } },
   { path: 'search', loadChildren: './search-progress/search-progress.module#SearchProgressModule', data: { num: 2 } },

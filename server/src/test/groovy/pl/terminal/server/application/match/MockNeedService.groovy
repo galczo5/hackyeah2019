@@ -48,4 +48,9 @@ class MockNeedService implements NeedService {
 	MatchAcceptResult createMatchAccept(NeedRequestId needRequestId, NeedRequestId matchAcceptId) {
 		return null
 	}
+
+	@Override
+	MatchRemoveResponse removeAcceptedMatch(MatchRemoveRequest matchRemoveRequest) {
+		return null
+	}
 }
