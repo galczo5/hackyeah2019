@@ -19,7 +19,7 @@ export interface LoginRequest {
 })
 export class LoginService {
 
-  private readonly url = 'http://localhost:8080/profiles/1';
+  private readonly url = 'http://localhost:8080/profiles/';
 
   private readonly loginUrl = 'http://localhost:8080/api/security/login/';
 
@@ -47,7 +47,6 @@ export class LoginService {
                .post(this.loginUrl, request, { headers, withCredentials: true })
                .pipe(
                  map((jid: any) => {
-
                    return null;
                  })
                );
@@ -55,7 +54,7 @@ export class LoginService {
 
   selectCurrentUser(): void {
     this.httpClient
-        .get(this.loginUrl)
+        .get(this.url)
         .subscribe((rawTraveler: any) => {
 
           const traveler = new Traveler(

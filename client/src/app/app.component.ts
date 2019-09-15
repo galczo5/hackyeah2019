@@ -23,12 +23,11 @@ export class AppComponent implements OnInit {
   title = 'client';
   i = 0;
 
-  constructor(private activeTravelerStore: ActiveTravelerStore) {
+  constructor() {
   }
 
   ngOnInit() {
-    const loggedInTraveler = new Traveler(1, 'Roman Borsuk', '', 'Poland', ['Suahili', 'Hawaiian']);
-    this.activeTravelerStore.set(loggedInTraveler);
+
   }
 
   getRouteAnimation(outlet: RouterOutlet) {

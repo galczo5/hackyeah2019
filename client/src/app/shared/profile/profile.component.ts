@@ -20,4 +20,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  getLanguages(): string {
+    return this.userInfo.languages.join(' * ');
+  }
+
 }

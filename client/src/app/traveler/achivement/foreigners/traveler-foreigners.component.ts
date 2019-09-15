@@ -5,10 +5,12 @@ import { ForeignersAchievementService } from './foreigners-achievement.service';
 @Component({
   selector: 'app-traveler-foreigners',
   template: `
-
-	  <ul class="m-1 p-0">
-		  <li *ngFor="let foreigner of foreigners" class="profile-achivement m-1"></li>
-	  </ul>
+    <div class="ml-3 mr-3">
+        <app-foreigner-achievement class="mr-1 mb-1" [size]="75" text="PL"></app-foreigner-achievement>
+        <app-foreigner-achievement class="mr-1 mb-1" [size]="75" text="PL"></app-foreigner-achievement>
+        <app-foreigner-achievement class="mr-1 mb-1" [size]="75" text="PL"></app-foreigner-achievement>
+        <app-foreigner-achievement class="mr-1 mb-1" [size]="75" text="PL"></app-foreigner-achievement>
+    </div>
   `,
   styleUrls: [
     './traveler-foreigners.component.scss'

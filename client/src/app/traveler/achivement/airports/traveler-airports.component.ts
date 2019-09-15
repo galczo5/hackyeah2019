@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { AirportAchievementService } from './airport-achievement.service';
 
 @Component({
   selector: 'app-traveler-airports',
   template: `
-
-	  <ul class="m-1 p-0">
-		  <li *ngFor="let airport of airports" class="profile-achivement m-1"></li>
-	  </ul>
+    <div class="ml-3 mr-3">
+        <app-ticket *ngFor="let airport of airports" [code]="airport" class="mr-1"></app-ticket>
+    </div>
   `,
   styleUrls: [
     './traveler-airports.component.scss'
@@ -15,17 +14,13 @@ import { AirportAchievementService } from './airport-achievement.service';
 })
 export class TravelerAirportsComponent implements OnInit {
 
-  private airports = [];
+  @Input()
+  airports: Array<string> = [];
 
   constructor(private airportAchievementService: AirportAchievementService) {
   }
 
   ngOnInit(): void {
-    this.airportAchievementService
-        .select()
-        .subscribe((airports) => {
-          this.airports = airports;
-        });
   }
 
 }

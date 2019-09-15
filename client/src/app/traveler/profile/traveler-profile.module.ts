@@ -9,6 +9,9 @@ import { TravelerAirportsComponent } from '../achivement/airports/traveler-airpo
 import { TravelerForeignersComponent } from '../achivement/foreigners/traveler-foreigners.component';
 import { ForeignersAchievementService } from '../achivement/foreigners/foreigners-achievement.service';
 import { ProfileModule } from '../../shared/profile/profile.module';
+import {AvatarModuleModule} from "../../avatar-module/avatar-module.module";
+import {TicketComponent} from "../achivement/airports/ticket.component";
+import {ForeignerAchievementComponent} from "../achivement/foreigners/foreigner-achievement.component";
 
 const routes = [{
   path: '',
@@ -20,12 +23,15 @@ const routes = [{
     CommonModule,
     MaterialModule,
     ProfileModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    AvatarModuleModule
   ],
   declarations: [
     TravelerProfileComponent,
     TravelerForeignersComponent,
-    TravelerAirportsComponent
+    TravelerAirportsComponent,
+    TicketComponent,
+    ForeignerAchievementComponent
   ],
   providers: [
     AirportAchievementService,
