@@ -12,9 +12,9 @@ export class ItsamatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    timer(5000)
+    timer(3000)
       .subscribe(() => {
-        // this.router.navigate(['profile']);
+        this.router.navigate(['profile']);
       });
   }
 
