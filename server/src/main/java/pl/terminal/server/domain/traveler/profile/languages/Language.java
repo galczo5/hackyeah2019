@@ -1,5 +1,7 @@
 package pl.terminal.server.domain.traveler.profile.languages;
 
+import org.apache.commons.lang3.StringUtils;
+
 public enum Language {
 	AFRIKAANS,
 	ALBANIAN,
@@ -144,5 +146,9 @@ public enum Language {
 	YORUBA,
 	YUCATEC,
 	ZAPOTEC,
-	ZULU
+	ZULU;
+
+	public String getHumanName() {
+		return StringUtils.capitalize(name().toLowerCase().replace("_", ""));
+	}
 }
