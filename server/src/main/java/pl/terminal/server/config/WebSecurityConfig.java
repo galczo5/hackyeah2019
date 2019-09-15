@@ -5,12 +5,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Base64;
 
 @Configuration
 @EnableWebSecurity
@@ -47,8 +54,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST, "**/security/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
-				.httpBasic()
-				.and()
+				.addFilterBefore((servletRequest, servletResponse, filterChain) -> {
+					HttpServletRequest req = (HttpServletRequest)servletRequest;
+					String authorization = req.getHeader("Authorization");
+					String basicToken = authorization.split(" ")[1];
+
+					String decodedToken = new String(Base64.getDecoder().decode(basicToken.getBytes()));
+					String[] tokenData = decodedToken.split(":");
+
+					UserDetails userDetails = userDetailsService.loadUserByUsername(tokenData[0]);
+					if(userDetails != null) {
+						UsernamePasswordAuthenticationToken springToken = new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+						SecurityContextHolder.getContext().setAuthentication(springToken);
+					}
+
+					filterChain.doFilter(servletRequest, servletResponse);
+
+				}, UsernamePasswordAuthenticationFilter.class)
+				.httpBasic().disable()
 				.csrf().disable()
 				.cors().disable()
 				.logout().permitAll();

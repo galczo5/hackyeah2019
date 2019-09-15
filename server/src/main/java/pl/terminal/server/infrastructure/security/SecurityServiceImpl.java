@@ -36,6 +36,11 @@ public class SecurityServiceImpl implements SecurityService {
 			return userRepository.findByUsername(((UserDetails) userDetails).getUsername()).getId();
 		}
 
+		Object token = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(token instanceof UserDetails) {
+			return userRepository.findByUsername(((UserDetails) token).getUsername()).getId();
+		}
+
 		return null;
 	}
 
