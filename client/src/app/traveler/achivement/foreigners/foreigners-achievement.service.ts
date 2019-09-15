@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Achievement } from '../achivement';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class ForeignersAchievementService {
@@ -14,11 +15,13 @@ export class ForeignersAchievementService {
   }
 
   select(): Observable<Array<Achievement>> {
-    return this.http.get(this.base).pipe(
-      map((rawAchievements: any) => {
-        return rawAchievements.countries.map(raw => new Achievement(raw.avatar, raw.score));
-      })
-    );
+    return this.http
+               .get(this.base)
+               .pipe(
+                 map((rawAchievements: any) => {
+                   return rawAchievements.countries.map(raw => new Achievement(raw.avatar, raw.score));
+                 })
+               );
   }
 
 }

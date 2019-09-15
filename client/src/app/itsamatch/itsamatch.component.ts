@@ -14,7 +14,7 @@ export class ItsamatchComponent implements OnInit {
   ngOnInit(): void {
     timer(3000)
       .subscribe(() => {
-        this.router.navigate(['profile']);
+        // this.router.navigate(['profile']);
       });
   }
 
