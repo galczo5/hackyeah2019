@@ -41,4 +41,8 @@ export class ConfirmMeetingComponent implements OnInit {
   getFirstName(name: string): string {
     return name.split(' ')[0];
   }
+
+  confirm() {
+
+  }
 }
