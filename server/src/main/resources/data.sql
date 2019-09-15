@@ -95,5 +95,15 @@ VALUES (3, 3, 9, '', '', 1);
 
 
 insert into JPA_STORY(ID, TITLE, CONTENT, AIRPORT_ID, AUTHOR_ID)
-VALUES (1, 'Great story about Warsaw', 'Go to help desk and ask for Lukasz, he is awesome guy to talk with', 1, 1);
+VALUES (1, 'Great coffee!', 'I strongly recommend, to try great coffee next to terminal 32', 1, 2);
+
+insert into JPA_STORY(ID, TITLE, CONTENT, AIRPORT_ID, AUTHOR_ID)
+VALUES (2, 'Really helpful airport staff', 'Airport staff was really helpful. I have lost my documents and was really scared, but they helped me to find it ' ||
+                                           'and continue my journey', 1, 3);
+
+insert into JPA_STORY(ID, TITLE, CONTENT, AIRPORT_ID, AUTHOR_ID)
+VALUES (3, 'Great story about Warsaw', 'Go to help desk and ask for Lukasz, he is awesome guy to talk with', 1, 2);
+
+insert into JPA_STORY(ID, TITLE, CONTENT, AIRPORT_ID, AUTHOR_ID)
+VALUES (4, 'Great story about Warsaw', 'Go to help desk and ask for Lukasz, he is awesome guy to talk with', 1, 3);
 
