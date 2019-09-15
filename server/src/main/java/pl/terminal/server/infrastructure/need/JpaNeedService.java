@@ -1,10 +1,5 @@
 package pl.terminal.server.infrastructure.need;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.springframework.stereotype.Service;
 import pl.terminal.server.application.match.MatchRemoveRequest;
 import pl.terminal.server.application.match.MatchRemoveResponse;
@@ -13,14 +8,15 @@ import pl.terminal.server.domain.airport.Airport;
 import pl.terminal.server.domain.airport.AirportId;
 import pl.terminal.server.domain.match.password.MatchPasswordGenerator;
 import pl.terminal.server.domain.match.password.MatchPasswordRequest;
-import pl.terminal.server.domain.need.MatchAcceptResult;
-import pl.terminal.server.domain.need.NeedMatchStatus;
-import pl.terminal.server.domain.need.NeedRequest;
-import pl.terminal.server.domain.need.NeedRequestId;
-import pl.terminal.server.domain.need.RegisterNeedRequest;
-import pl.terminal.server.domain.need.TimeAvailability;
+import pl.terminal.server.domain.need.*;
 import pl.terminal.server.domain.traveler.TravelerId;
 import pl.terminal.server.infrastructure.airport.AirportsService;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class JpaNeedService implements NeedService {
@@ -81,8 +77,8 @@ public class JpaNeedService implements NeedService {
 
         JpaMatchNeedEvent acceptNeedEvent = JpaMatchNeedEvent.builder()
                 .needRequestId(needRequest.getId())
-                .password(matchPasswordGenerator.generatePassword(MatchPasswordRequest.empty()).getPassword())
-                .matchPassword(matchPasswordGenerator.generatePassword(MatchPasswordRequest.empty()).getPassword())
+                .password(matchPasswordGenerator.generatePassword(new MatchPasswordRequest("Marco", 0L)).getPassword())
+                .matchPassword(matchPasswordGenerator.generatePassword(new MatchPasswordRequest("Polo", 0L)).getPassword())
                 .matchNeedRequestId(matchNeedRequest.getId())
                 .needMatchStatus(NeedMatchStatus.ACCEPTED)
                 .build();
