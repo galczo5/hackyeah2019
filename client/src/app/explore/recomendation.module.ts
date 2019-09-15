@@ -7,6 +7,7 @@ import { RecomendationListComponent } from './recomendation-list.component';
 import { RecomendationService } from './recomendation.service';
 import { RecomendationCardComponent } from './card/recomendation-card.component';
 import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
+import {AvatarModuleModule} from "../avatar-module/avatar-module.module";
 
 const routes = [{
   path: '',
@@ -18,7 +19,8 @@ const routes = [{
     CommonModule,
     MaterialModule,
     ColoredButtonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    AvatarModuleModule
   ],
   declarations: [
     RecomendationListComponent,
