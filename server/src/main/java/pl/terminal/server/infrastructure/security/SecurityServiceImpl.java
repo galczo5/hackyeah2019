@@ -7,6 +7,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import pl.terminal.server.rest.security.SessionId;
+
+import java.util.Base64;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
@@ -36,8 +39,23 @@ public class SecurityServiceImpl implements SecurityService {
 		return null;
 	}
 
+	public String generateToken(String username) {
+		return Base64.getEncoder().encodeToString(username.getBytes());
+	}
+
+	public void resolveTokenToUser(String token) {
+		String username = new String(Base64.getDecoder().decode(token.getBytes()));
+		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		if(userDetails == null) {
+			return;
+		}
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
+	}
+
 	@Override
-	public void login(String username, String password) {
+	public SessionId login(String username, String password) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password,
 				userDetails.getAuthorities());
@@ -46,6 +64,9 @@ public class SecurityServiceImpl implements SecurityService {
 
 		if (usernamePasswordAuthenticationToken.isAuthenticated()) {
 			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			return new SessionId(this.generateToken(username));
 		}
+
+		throw new IllegalArgumentException();
 	}
 }

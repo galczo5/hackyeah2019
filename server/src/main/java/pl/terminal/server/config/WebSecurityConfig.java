@@ -18,6 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final UserDetailsService userDetailsService;
 
+
 	@Autowired
 	public WebSecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
@@ -44,10 +45,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("**/security/**").permitAll()
 				.antMatchers(HttpMethod.POST, "**/security/**").permitAll()
-				//				.anyRequest().authenticated()
+				.anyRequest().authenticated()
+				.and()
+				.httpBasic()
 				.and()
 				.csrf().disable()
-				.logout()
-				.permitAll();
+				.cors().disable()
+				.logout().permitAll();
 	}
 }

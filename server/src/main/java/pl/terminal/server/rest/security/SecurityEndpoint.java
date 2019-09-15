@@ -1,12 +1,7 @@
 package pl.terminal.server.rest.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.bind.annotation.*;
 import pl.terminal.server.infrastructure.security.SecurityService;
 
 @RestController
@@ -22,8 +17,8 @@ public class SecurityEndpoint {
 
 	@PostMapping("/login")
 	public SessionId login(@RequestBody LoginRequestDTO requestDTO) {
-		securityService.login(requestDTO.username, requestDTO.password);
-		return new SessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
+		SessionId token = securityService.login(requestDTO.username, requestDTO.password);
+		return token;
 	}
 
 	@GetMapping("/logged")
