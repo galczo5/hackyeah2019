@@ -3,6 +3,7 @@ import { Traveler } from '../traveler/traveler';
 import { UserInfo } from '../shared/profile/user-info';
 import { MatchedTravelerStore } from './matched-traveler.store';
 import { MatchedService } from './matched.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class MatchedComponent implements OnInit {
   matched: UserInfo = new Traveler(6, 'Roman Borsuk', '', 'Polish guy', ['-']);
 
   constructor(private matchedStore: MatchedTravelerStore,
+              private router: Router,
               private matchedService: MatchedService) {
   }
 
@@ -30,7 +32,7 @@ export class MatchedComponent implements OnInit {
     this.matchedService
         .confirm()
         .subscribe(() => {
-
+          this.router.navigate(['/place-confirm']);
         });
   }
 
