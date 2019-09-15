@@ -21,9 +21,9 @@ public class SecurityEndpoint {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestBody LoginRequestDTO requestDTO) {
+	public SessionId login(@RequestBody LoginRequestDTO requestDTO) {
 		securityService.login(requestDTO.username, requestDTO.password);
-		return RequestContextHolder.currentRequestAttributes().getSessionId();
+		return new SessionId(RequestContextHolder.currentRequestAttributes().getSessionId());
 	}
 
 	@GetMapping("/logged")
