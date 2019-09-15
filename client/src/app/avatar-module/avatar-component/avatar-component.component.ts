@@ -27,7 +27,7 @@ export class AvatarComponentComponent implements OnInit {
   }
 
   getSrc(): string {
-    return `url('data:image/svg+xml;utf8;base64,${this.url}')`
+    return `url('data:image/svg+xml;utf8;base64,${this.url}')`;
   }
 
 }

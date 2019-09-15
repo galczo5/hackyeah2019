@@ -15,9 +15,9 @@
     </div>
     <div *ngIf="matchedTraveler" class="align-center">
 
-<!--      <mat-form-field>-->
-        <input ngModel #password="ngModel" name="password">
-<!--      </mat-form-field>-->
+      <mat-form-field>
+        <input matInput ngModel #password="ngModel" name="password">
+      </mat-form-field>
 
       <h3>{{ getFirstName(matchedTraveler.name) }}'s word</h3>
     </div>
