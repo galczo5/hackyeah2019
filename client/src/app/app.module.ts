@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {APP_BOOTSTRAP_LISTENER, APP_INITIALIZER, NgModule} from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, APP_INITIALIZER, NgModule } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -11,25 +9,30 @@ import { FAKE_LOCATION } from './geolocation/geolocation.service';
 import { MaterialModule } from './material/material.module';
 import { ActiveTravelerStore } from './traveler/active.traveler.store';
 import { NavigationModule } from './shared/navigation/navigation.module';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest,
+  HttpRequest, HttpClientModule, HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export class AddHeaderInterceptor implements HttpInterceptor {
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    const auth = localStorage.getItem('JSESSIONID') || '';
+
     // Clone the request to add the new header
-    const clonedRequest = req.clone({ headers: req.headers.set('Authorization', 'Bearer 123') });
+    const clonedRequest = req.clone({ headers: req.headers.set('Authorization', auth) });
 
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(clonedRequest);
   }
 }
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
-      multi: true,
+      multi: true
     },
     {
       multi: true,
@@ -58,11 +61,11 @@ export class AddHeaderInterceptor implements HttpInterceptor {
       useFactory: (router: Router) => {
         return () => {
           // router.navigateByUrl('/welcome');
-        }
+        };
       },
       deps: [Router]
     },
-    ActiveTravelerStore
+    ActiveTravelerStore,
   ],
   bootstrap: [AppComponent]
 })

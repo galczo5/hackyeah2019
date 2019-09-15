@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, zip } from 'rxjs';
 import { SelectedAirportStore } from '../location/selected-airport.store';
 import { SelectedActivitiesStore } from '../location/selected-activities-store.service';
@@ -8,6 +8,7 @@ import { WaitingTimeStore } from './waiting-time-store.service';
 import { switchMap, take, tap } from 'rxjs/operators';
 import { NeedRequestIdStore } from './need-request-id.store';
 import { NeedRequestId } from './need-request-id';
+import { CookieService } from 'ngx-cookie-service';
 
 export interface RegisterRequest {
 
@@ -67,9 +68,17 @@ export class RegisterService {
             availableTo: availableToDate
           } as any;
 
+          let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+          });
+
           return this.httpClient
                      .post(this.url,
-                       request
+                       request,
+                       {
+                         headers,
+                         withCredentials: true
+                       }
                      );
 
         }),

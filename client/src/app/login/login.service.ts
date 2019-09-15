@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -24,7 +24,6 @@ export class LoginService {
   private readonly loginUrl = 'http://localhost:8080/api/security/login/';
 
   constructor(private httpClient: HttpClient,
-              private cookieService: CookieService,
               private activeTravelerStore: ActiveTravelerStore) {
   }
 
@@ -35,11 +34,15 @@ export class LoginService {
       password
     };
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
     return this.httpClient
-               .post(this.loginUrl, request)
+               .post(this.loginUrl, request, { headers, withCredentials: true })
                .pipe(
-                 map((jid: string) => {
-                   this.cookieService.set('JSESSIONID', jid)
+                 map((jid: any) => {
+                   localStorage.setItem('JSESSIONID', jid.id)
                    return null;
                  })
                );

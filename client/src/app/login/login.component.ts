@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  private readonly loginUrl = 'http://localhost:8080/api/security/login/';
+
   constructor(private loginService: LoginService,
               private router: Router) {
   }
