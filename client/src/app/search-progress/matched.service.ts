@@ -10,6 +10,11 @@ import { map, switchMap } from 'rxjs/operators';
 import { NeedRequestId } from '../check-in/need-request-id';
 import { Traveler } from '../traveler/traveler';
 
+export interface MatchedDto {
+  traveler: Traveler;
+  matchRequestId: NeedRequestId;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +26,7 @@ export class MatchedService {
               private needRequestIdStore: NeedRequestIdStore) {
   }
 
-  findMatched(): Observable<Array<Traveler>> {
+  findMatched(): Observable<Array<MatchedDto>> {
 
     return this.needRequestIdStore
                .select()
@@ -29,24 +34,27 @@ export class MatchedService {
                  switchMap((requestId: NeedRequestId) => {
 
                    return this.httpClient
-                              .get(this.url + '/' + requestId.id);
+                              .get(this.url + '/' + requestId.id)
                  }),
                  map((rawMatched: Array<any>) => {
 
                    return rawMatched.map((rawTraveler) => {
 
-                     return new Traveler(
+                     const traveler = new Traveler(
                        rawTraveler.profile.travelerId,
                        rawTraveler.profile.nickname,
                        '',
                        rawTraveler.profile.nationality,
                        rawTraveler.profile.languages
                      );
+
+                     return {
+                       traveler,
+                       matchRequestId: rawTraveler.needRequestId
+                     } as MatchedDto;
                    });
                  })
                );
-
-
   }
 
 }

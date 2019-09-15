@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { interval, Subject } from 'rxjs';
 import { delay, switchMap, takeUntil, takeWhile, tap } from 'rxjs/operators';
 
-import { MatchedService } from '../matched.service';
-import { MatchedStore } from '../../matched/matched.store';
+import { MatchedDto, MatchedService } from '../matched.service';
 import { Traveler } from '../../traveler/traveler';
+import { MatchedTravelerStore } from '../../matched/matched-traveler.store';
+import { MatchedRequestIdStore } from '../../matched/matched.request-id.store';
 
 @Component({
   selector: 'app-search-progress',
@@ -20,7 +21,8 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
 
   constructor(private matchedService: MatchedService,
               private router: Router,
-              private matchedStore: MatchedStore) {
+              private matchedRequestIdStore: MatchedRequestIdStore,
+              private matchedStore: MatchedTravelerStore) {
   }
 
   ngOnInit() {
@@ -41,9 +43,11 @@ export class SearchProgressComponent implements OnInit, OnDestroy {
         delay(3000),
         takeUntil(this.destroy$)
       )
-      .subscribe((travelers: Array<Traveler>) => {
+      .subscribe((matchedDtos: Array<MatchedDto>) => {
 
-        this.matchedStore.set(travelers[0]);
+        this.matchedRequestIdStore.set(matchedDtos[0].matchRequestId);
+
+        this.matchedStore.set(matchedDtos[0].traveler);
         this.router.navigate(['/matched']);
       });
   }

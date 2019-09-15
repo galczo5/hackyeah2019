@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { MatchedComponent } from './matched.component';
 import { ProfileModule } from '../shared/profile/profile.module';
 import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
+import { MatchedService } from './matched.service';
 
 
 const routes = [{
@@ -25,6 +26,7 @@ const routes = [{
     MatchedComponent
   ],
   providers: [
+    MatchedService
   ]
 })
 export class MatchedModule {}

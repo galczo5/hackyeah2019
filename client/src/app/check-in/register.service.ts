@@ -9,6 +9,7 @@ import { switchMap, take, tap } from 'rxjs/operators';
 import { NeedRequestIdStore } from './need-request-id.store';
 import { NeedRequestId } from './need-request-id';
 import { CookieService } from 'ngx-cookie-service';
+import { MatchedRequestIdStore } from '../matched/matched.request-id.store';
 
 export interface RegisterRequest {
 
@@ -35,6 +36,7 @@ export class RegisterService {
               private selectedActivitiesStore: SelectedActivitiesStore,
               private activeTravelerStore: ActiveTravelerStore,
               private selectedAirportStore: SelectedAirportStore,
+              private matchedRequestIdStore: MatchedRequestIdStore,
               private needRequestIdStore: NeedRequestIdStore) {
   }
 

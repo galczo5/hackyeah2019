@@ -7,7 +7,7 @@ import { Store } from '../utils/Store';
 @Injectable({
   providedIn: 'root'
 })
-export class MatchedStore extends Store<Traveler> {
+export class MatchedTravelerStore extends Store<Traveler> {
 
   constructor() {
     super();
