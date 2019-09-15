@@ -44,7 +44,7 @@ import { LoginInterceptor } from './login/login.interceptor';
       provide: APP_BOOTSTRAP_LISTENER,
       useFactory: (router: Router) => {
         return () => {
-          router.navigateByUrl('/login');
+          router.navigateByUrl('/welcome');
         };
       },
       deps: [Router]

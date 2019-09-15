@@ -20,7 +20,7 @@ $image-size: 150px;
   }
 
   .profile-image {
-    background: #999;
+    background: linear-gradient(180deg, #E2E3F9 0%, #AAACF4 100%);
     border-radius: $image-size;
     height: $image-size;
     margin: auto;

@@ -60,7 +60,7 @@ export class LoginService {
           const traveler = new Traveler(
             rawTraveler.travelerId,
             rawTraveler.nickname,
-            '',
+            rawTraveler.avatar,
             rawTraveler.nationality,
             rawTraveler.languages
           );

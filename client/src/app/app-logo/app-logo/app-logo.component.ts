@@ -12,9 +12,9 @@ export class AppLogoComponent implements OnInit {
   constructor(private readonly router : Router) { }
 
   ngOnInit() {
-    timer(2500)
+    timer(1500)
       .subscribe(() => {
-        this.router.navigateByUrl('/profile')
+        this.router.navigateByUrl('/login')
       });
   }
 

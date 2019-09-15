@@ -14,6 +14,9 @@ export class AvatarComponentComponent implements OnInit {
   @Input()
   size: number;
 
+  @Input()
+  background: string = 'none';
+
   constructor(private readonly domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
