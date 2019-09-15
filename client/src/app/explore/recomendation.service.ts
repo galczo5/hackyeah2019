@@ -20,7 +20,7 @@ export class RecomendationService {
                    return this.http.get<Array<any>>(this.base + '/' + airport.id).pipe(
                      map((raw: Array<any>) => {
                        return raw.map(r => {
-                         return new Recomendation(r.title, r.description, r.numberOfLikes, r.author.avatar);
+                         return new Recomendation(r.title, r.content, r.numberOfLikes, r.author.avatar);
                        });
                      })
                    );
