@@ -6,7 +6,10 @@ import { Achievement } from '../achivement';
   selector: 'app-traveler-airports',
   template: `
 	  <div class="ml-3 mr-3">
-		  <app-ticket *ngFor="let airport of airports" [code]="airport" class="mr-1"></app-ticket>
+		  <app-ticket *ngFor="let airport of airports"
+					  [airport]="airport"
+					  class="mr-1">
+		  </app-ticket>
 	  </div>
   `,
   styleUrls: [

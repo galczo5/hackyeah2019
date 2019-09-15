@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
+import { ForeignersAchievementService } from './foreigners-achievement.service';
+
+
 @Component({
   selector: 'app-foreigner-achievement',
   template: `
@@ -38,7 +41,6 @@ export class ForeignerAchievementComponent {
   size: number;
 
   constructor(private readonly domSanitizer: DomSanitizer) {
-
   }
 
   urlSanitized(): SafeUrl {
