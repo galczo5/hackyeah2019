@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { CookieService } from 'ngx-cookie-service';
+
 import { Traveler } from '../traveler/traveler';
 import { ActiveTravelerStore } from '../traveler/active.traveler.store';
-import { map } from 'rxjs/operators';
+
 
 export interface LoginRequest {
   username: string;
@@ -20,6 +24,7 @@ export class LoginService {
   private readonly loginUrl = 'http://localhost:8080/api/security/login/';
 
   constructor(private httpClient: HttpClient,
+              private cookieService: CookieService,
               private activeTravelerStore: ActiveTravelerStore) {
   }
 
@@ -33,7 +38,8 @@ export class LoginService {
     return this.httpClient
                .post(this.loginUrl, request)
                .pipe(
-                 map(() => {
+                 map((jid: string) => {
+                   this.cookieService.set('JSESSIONID', jid)
                    return null;
                  })
                );

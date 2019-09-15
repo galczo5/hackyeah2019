@@ -1,19 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
-import { CookieService } from 'ngx-cookie-service';
 
 import { MaterialModule } from '../material/material.module';
 import { ProfileModule } from '../shared/profile/profile.module';
-import { LoginComponent } from './login.component';
 import { ColoredButtonModule } from '../shared/colored-button/colored-button.module';
+import { PlaceConfirmComponent } from './place-confirm.component';
 
 
 const routes = [{
   path: '',
-  component: LoginComponent
+  component: PlaceConfirmComponent
 }];
 
 @NgModule({
@@ -21,15 +18,13 @@ const routes = [{
     CommonModule,
     MaterialModule,
     ProfileModule,
-    FormsModule,
     RouterModule.forChild(routes),
     ColoredButtonModule
   ],
   declarations: [
-    LoginComponent
+    PlaceConfirmComponent
   ],
   providers: [
-
   ]
 })
-export class LoginModule {}
+export class PlaceConfirm {}

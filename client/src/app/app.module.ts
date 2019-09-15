@@ -46,6 +46,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
   ],
   providers: [
     { provide: FAKE_LOCATION, useValue: true },
+    ActiveTravelerStore,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AddHeaderInterceptor,
